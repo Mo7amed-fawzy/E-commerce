@@ -1,0 +1,433 @@
+
+.product-image-main {
+    width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    padding: 10px;
+    background-color: #fff;
+    transition: all .5 ease-in-out;
+ 
+}
+
+.product-image-main:hover{
+    transition: calc(1.2) ;
+}
+
+.small-images img {
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    padding: 5px;
+    background-color: #fff;
+
+ 
+}
+
+.small-images img:hover {
+    border-color: #007bff;
+}
+
+.price {
+    color: red;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.discount {
+    color: green;
+    font-weight: bold;
+}
+
+.stock-warning {
+    color: orange;
+    font-weight: bold;
+}
+
+/* Sidebar styles */
+.sidebar {
+    border: 1px solid #ddd;
+    padding: 10px;
+    background-color: #f8f9fa;
+}
+
+.sidebar-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.sidebar-table a {
+    text-decoration: none;
+    color: #333;
+}
+
+.sidebar-table a:hover {
+    text-decoration: underline;
+}
+.col-md-7 i{
+color:#636161;
+}
+
+.input-group{
+    width: 25%;
+}
+
+.d-flex .btn{
+    padding: 8px  50px;
+}
+ .mt-3 button{
+    border: none;
+    
+}
+.mt-3 i{
+    padding: 5px;
+    margin-right: 10px;
+    background-color: rgb(182, 149, 149);
+    border-radius: 50%;
+    font-size: 14px;
+    color:#333;
+    font-weight: bold;
+}
+
+ /* هنا  بداية تنسيق السكشن الثاني */
+
+ .best-sellers {
+    width: 285px;
+    border: 1px solid #bbb9b9;
+    padding: 15px;
+    border-radius: 4px;
+    font-family: Arial, sans-serif;
+    background-color:#fff;
+    margin-top: 30px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e3e3e3;
+    margin-bottom: 15px;
+    padding-bottom: 12px;
+   
+}
+
+.header h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+   
+}
+
+.indicator, .doo{
+    width: 40px;
+    height: 8px;
+    background-color: rgb(253, 3, 3);
+    border-radius: 25%;
+}
+ .doo{
+    width: 8px;
+    height: 8px;
+    background-color: rgb(14, 13, 13);
+    border-radius: 50%;
+}
+
+.product {
+    display: flex;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.product img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-right: 10px;
+}
+
+.details {
+    flex: 1;
+}
+
+.product-name {
+    font-size: 14px;
+    margin: 0;
+    /* font-weight: bold; */
+}
+.product-name:hover{
+    color:red;
+    transition: 1s;
+}
+
+.stars span {
+    font-size: 18px;
+    color: #cccccc;
+}
+
+.price {
+    font-size: 14px;
+    color: red;
+    margin: 5px 0 0 0;
+    font-weight: bold;
+}
+
+.old-price {
+    text-decoration: line-through;
+    color: #999999;
+    font-weight: normal;
+    margin-left: 5px;
+}
+
+
+/* هنا نهاية السيد بار  */
+
+/* وبداية التنسيق الكود اللي يمين السيد بار  */
+
+.tabs {
+     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #e3e3e3;
+    background-color:#ddd;
+    margin: 30px;
+
+}
+
+.tab-link {
+    background-color: white;
+    border: 1px solid #e3e3e3;
+    border-radius: 20px;
+    padding: 10px 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+.tab-link:hover{
+    border: 1px solid #0e0d0d;
+    cursor: pointer;
+    background-color:#ddd;
+}
+
+.tab-link.active {
+    background-color:#ddd;
+    color: rgb(5, 5, 5);
+    border: 1px solid black;
+    font-weight: bold;
+}
+
+.tab-content {
+    display: none;
+    margin: 25px;
+}
+.tab-content h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 0;
+}
+.tab-content p{
+    color:#636161;
+}
+
+.tab-content ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    color:#636161;
+}
+
+#show-more-btn{
+    color:red;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    padding: 30px;
+    margin-top: 100px;
+}
+
+/* <!-- REVIEWS (0)هنا بداية  الكود اما تدوس علي زر ال --> */
+
+
+.review-section {
+    background-color: #fff;
+    /* padding: 100px; */
+    /* margin: 20px auto; */
+    font-family: Arial, sans-serif;
+    margin-top: -50px;
+}
+
+.review-section h2 {
+    font-size: 24px;
+    margin-bottom: 50px;
+    margin:20px;
+
+}
+
+.tab-content .no-reviews {
+    color: #666;
+    margin-bottom: 50px;
+    text-align: center;
+    margin-top: -55px;
+    padding:35px ;
+}
+
+.review-section label {
+    display: block;
+    margin-bottom: 5px;
+    color: #746c6c;
+    margin:20px;
+}
+
+.review-section input[type="text"],
+.review-section textarea {
+    width:100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border:none;
+    border-radius: 4px;
+    background-color: #f4f4f4;
+}
+.btn-back a{
+    text-decoration:none;
+    color: #fff;
+}
+
+.review-section .rating {
+    margin-bottom: 20px;
+}
+
+.review-section .rating label {
+    margin-right: 15px;
+    color: #666;
+}
+
+.review-section .buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.review-section .buttons button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.review-section .btn-back {
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+.review-section .btn-continue {
+    background-color: #3498db;
+    color: #fff;
+}
+/* <!-- REVIEWS (0)هنا نهاية  الكود اما تدوس علي زر ال --> */
+
+ 
+
+
+ /* هنا  نهاية تنسيق السكشن الثاني */
+
+ /* هنا  نهاية تنسيق السكشن الثالث */
+
+.imgs-3{
+    background-color:#e9e5e557;
+    border: none; 
+}
+.imgs-3 img:hover{
+    opacity: .8;
+    transition: 1s;
+}
+
+.product-card {
+    text-align: left;
+    padding: 20px;
+}
+
+.product-image {
+    width: 100px;
+    height: auto;
+}
+
+.product-title {
+    font-size: 20px;
+    color: #000;
+    margin: 10px 0;
+}
+
+.product-price {
+    color: #ff5733;
+    font-size: 22px;
+}
+
+.related-upsell {
+    margin-top: 30px;
+}
+
+.tab {
+    overflow: hidden;
+}
+
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 10px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+.tab button:hover {
+    color: #ff5733;
+}
+
+.tab button.active {
+    color: #ff5733;
+    border-bottom: 2px solid #ff5733;
+}
+
+.product-list {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.related-product {
+    text-align: center;
+    padding: 10px;
+    width: 22%;
+}
+
+.related-image {
+    width: 100%;
+    height: auto;
+}
+
+.related-title {
+    font-size: 15px;
+    color: #000;
+    margin: 10px 0;
+    text-align: left;
+}
+
+.related-price {
+    color: #ff5733;
+    font-size: 18px;
+    text-align: left;
+}
+.related-product span{
+    color:#333;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: left;
+    margin-right: 90px;
+}
+
+
+

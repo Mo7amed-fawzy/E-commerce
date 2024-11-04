@@ -1,0 +1,1197 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: 'Barlow', sans-serif;
+   background-color: #EEF1F1;
+}
+
+body.no-scroll {
+    overflow: hidden;
+}
+
+.allpopupsection {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.allpopupsection.show {
+    visibility: visible;
+    opacity: 1;
+}
+.closebtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    bottom: 50px;
+    left: 752.6px;
+    font-size: 25px; 
+    cursor: pointer;
+    font-weight: bold; 
+    padding-bottom: 5px;
+    width: 30px;
+    height: 30px;
+    color: white;
+    background-color: rgb(246, 65, 45);
+}
+
+.popupcontent {
+    display: flex;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    border-top-right-radius: 0px;
+    width: 800px;
+}
+
+.popupleft {
+   width: 50%;
+}
+.popupleft img{
+    position: relative;
+    right: 40px;
+    width: auto;
+    height: 420px;
+}
+
+.popupright{
+    position: relative;
+    width: 50%;
+}
+
+.allpopupsection .popupcontent .popupright h1{
+    margin-top: 50px;
+    margin-left: 80px;
+    font-weight: bolder;
+}
+
+.allpopupsection .popupcontent .popupright p{
+    margin-top: 20px;
+    color: rgb(172, 172, 172);
+    line-height: 1.5;
+}
+
+.allpopupsection .popupcontent .popupright div input{
+  margin-left: 19px;
+  border: none;
+  font-size: 16px;
+  outline: none;
+  padding-right: 30px;
+}
+
+.allpopupsection .popupcontent .popupright div input::placeholder{
+    color: rgb(164, 165, 165);
+    font-size: 15px;
+}
+
+
+
+.subscribeentry {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 350px; 
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.allpopupsection .popupcontent .popupright div button{
+  background-color: #f44336; 
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  padding-left: 20px;
+}
+
+.allpopupsection .popupcontent .popupright div button:hover {
+  background-color: #d32f2f; 
+}
+
+.allpopupsection .popupcontent .popupright label{
+    margin-left: 50px;
+    color: #afadad;
+}
+
+#backtotop {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #757575;
+    color: white;
+    border-radius: 10px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center; /*   بتظبط البتاعه فوق وتحت   */
+    justify-content: center; /*   بتظبط البتاعه يمين وشمال   */
+    cursor: pointer;
+    visibility: hidden;  /*   بخليها مختفيه فالبداية */
+    opacity: 0;
+    transform: translateY(50px); /* هنا ببدا الانيميشن*/
+    transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out, visibility 0.4s;
+}
+
+#backtotop.show {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+.sideiconsbar {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    right: 0;
+    top: 50%;
+    background-color: #F6412D; 
+    padding: 5px;
+}
+
+.sideicons i{
+    position: relative;
+    cursor: pointer;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    
+}
+
+.sideiconstext {
+    display: none;
+    position: absolute;
+    right: 100%;
+    background-color: #ffffff;
+    color: #ff5722;
+    padding: 5px;
+    border-radius: 5px;
+    white-space: nowrap;
+}
+
+.sideicons:hover .sideiconstext {
+    display: block;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    
+}
+
+.mycontainer {
+    width: 94.2%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.headerone {
+    display: flex;
+    background-color: #333;
+    color: white;
+    font-size: 13px;
+    padding: 5px;
+}
+.leftone{
+    position: relative;
+    top: 6px;
+    top: 10px;
+}
+.leftone div{
+    display: inline;
+}
+.rightone {
+    position: relative;
+    bottom: 8px;
+    justify-content: end;
+}
+.rightone div{
+    display: inline;
+}
+.rightone span {
+    margin-left: 20px;
+}
+.rightone div i{
+    font-size: 10px
+}
+.rightone div:hover{
+    color: #F63F30;
+}
+
+/* هنا تنظيم الريسبونسف بتاع اول هيدر */
+
+    @media (max-width: 768px) {
+        .leftone {
+            display: none;
+        }
+        
+        .rightone {
+            padding: 7px;
+            position: relative;
+            align-items: center;
+            justify-content: start;
+            margin-left: 30px;
+        }
+    }
+
+
+/* بداية الجزء التاني من الهيدر */
+.headertwo {
+    padding-top: 20px;
+    background-color: white;
+    display: flex;
+    width: 100%;
+    padding-left: 50px;
+}
+
+.headertwo .mycontainer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 26px;
+}
+
+
+.lefttwo {
+    width: 10%;
+}
+
+.centertwo {
+    display: flex;
+    width: 70%;
+    margin-left: 100px;
+    align-items: center; 
+}
+
+.centertwo .form-floating .btn-group .mybuttunsearch{
+    border-color: #e74c3c;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    color: #6b6b6b;
+    border-right-color:white ;
+    
+}
+
+.centertwo .form-floating .btn-group .mybuttunsearch{
+    color: #4b4b4b; 
+    font-size: 13px;
+}
+
+.centertwo .form-floating .btn-group .mybuttunsearch::after{
+        margin-right:50px ; 
+}
+
+.centertwo .myuselesssearch {
+    padding-right: 10px;
+    border: 1px solid #e74c3c;
+    padding-right: 290px;
+    border-left-color:#aeaeae ;
+    outline: none;
+    padding-left: 17px;
+}
+
+.centertwo .myuselesssearch::placeholder {
+    color: #999; 
+    font-size: 14px; 
+    opacity: 0.8; 
+    padding-left: 10px;
+}
+
+.centertwo a {
+    padding: 10px;
+    background-color: #F6412D;
+    color: white;
+}
+
+.centertwo a:hover {
+    background-color: #de2b18;
+    color: white;
+}
+
+.btn-outline-myorange {
+    width: 60px;
+    background-color: #f6412d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-outline-myorange:hover{
+    background-color: #E6200A;
+}
+
+.righttwo {
+    display: flex;
+    align-items: center; 
+    width: 30%;
+}
+
+.righttwo div {
+    margin-left: 20px;
+}
+
+.righttwo div i {
+    padding-left: 13px;
+    opacity: .8;
+}
+
+.Carttext a{
+    font-size: 14px;
+    text-decoration: none;
+    color: black;
+}
+
+.Carttext a:hover{
+    color: #F63F30;
+}
+
+.headertwo .righttwo .righttwodiv:hover ,.headertwo .righttwo p:hover{
+    color: #F63F30;
+}
+
+
+@media (max-width: 768px) {
+    .lefttwo{
+        margin-left: 200px;
+       padding: 10px;
+    }
+    .righttwo , .centertwo{
+        display: none;
+    }
+}
+/* دا نهاية جزء الهيدر التاني */
+
+/* نبدا فالهيدر التالت*/
+
+.headerthree {
+    border-top: 1px solid #ccc;
+    background-color: white;
+    margin-bottom: 30px;
+    padding-bottom: 8px;
+}
+
+.headerthree .mycontainer ul{
+    list-style: none;
+    display: flex;
+}
+
+.headerthree .mycontainer ul li{
+    margin-right: 17px;
+}
+
+/* .headerthree .mycontainer ul li a {
+    text-decoration: none;
+} */
+
+.headerthree .mycontainer .homelayout{
+    color:  #F6412D ;
+}
+/* كدا بقولو استثني الدروب داون ايتيم من الكلام دا  */
+.headerthree .mycontainer ul li a:not(.dropdown-item)::before { 
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: #F6412D; 
+    top: -2px; 
+    transition: 0.3s ease-in-out;
+}
+
+.headerthree .mycontainer ul li a:not(.dropdown-item):hover::before {
+    width: 100%;
+}
+
+.headerthree .mycontainer ul li span:hover{
+    cursor: pointer;
+}
+
+/* .dropdown-menu-large {
+    width: 730px;
+    background-color: #ffffff;
+  } */
+.dropdown-menu {
+    width: 750px !important;
+
+    background-color: #ffffff;
+  }
+
+  .headerthree .nav-item.dropdown:hover .dropdown-menu-large {
+    display: block;
+  }
+  
+  .dropdown-header {
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .nav-link.dropdown-toggle {
+    padding-right: 20px; 
+    position: relative;
+   
+}
+
+.nav-link.dropdown-toggle::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 8px;
+}
+
+
+  .nav-link.dropdown-toggle::after {
+    content: "";/*  بضيف سهم بعد النص ك ديفولت*/
+    margin-left: -36px;
+  }
+  
+  
+  /* تحسين عرض القوائم */
+  .headerthree ul {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .headerthree ul li {
+    padding: 10px;
+  }
+  
+  .headerthree ul li a {
+    text-decoration: none;
+    color: #000;
+  }
+  
+  .headerthree ul li a:hover {
+    color: #F63F30;
+  }
+  
+  .hot, .new {
+    background-color: red;
+    color: white;
+    padding: 2px 5px;
+    font-size: 12px;
+    border-radius: 3px;
+    position: relative;
+    bottom:  20px;
+    right: 25px;
+  }
+  
+  .new {
+    background-color: #3498db;
+  }
+/* نهاية الهيدر اخيرا */
+
+
+
+/* نبدا فاول سيكشن فالهوم بييج*/
+
+.mainHomePage .mycontainer{
+    display: flex;
+    
+}
+.Midfirstl {
+    width: 56%;
+    height: 30px;
+    position: relative;
+}
+
+.slide {
+    width: 40px;
+    height: 30px;
+    position: absolute; 
+    opacity: 0; 
+    transition: 0.5s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.slide img {
+    width: 820px;
+    height: 440px;
+    border-radius: 10px;
+}
+
+.Midfirstm {
+    margin-top:330px;
+    margin-right: 370px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    z-index: 1;
+    
+}
+
+.dotat {
+    width: 20px;
+    height: 5px;
+    margin: 0 5px;
+    background-color: #4E7091;
+    border-radius: 20%;
+    cursor: pointer;
+}
+
+.dotat.active {
+    background-color: #FF6347;
+    width: 30px;
+}
+
+/* .Midfirstr{
+    padding-left: 100px;
+} */
+.Midfirstr img{
+    height: 440px;
+}
+
+.Midfirstr img:hover{
+    opacity: .8;
+    transition: 0.5s ease-in-out;
+}
+
+
+
+/* نبدا فالجزء التاني */
+.mainHomePagetwo{
+    /* margin: 20px; */
+    margin-top: 20px;
+   
+}
+
+.mainHomePagetwo .mycontainer{
+    background-color: white;
+    display: flex;
+    border-radius: 10px;
+    overflow-x: auto;
+}
+
+/* .mainHomePagetwo .mycontainer::-webkit-scrollbar {
+    display: none;  لإخفاء شريط التمرير في كروم وسفاري
+} */
+
+.mainHomePagetwo .mycontainer div {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 30px;
+    margin-right: 10px;
+    /* justify-content: center; */
+    /* text-align: center; */
+}
+
+.mainHomePagetwo .mycontainer div img{
+    width: 50px;
+    height: 50px;
+    border-radius: 25%;
+    padding: 8px;
+}
+
+.mainHomePagetwo .mycontainer div p{
+    margin-top: 6px;
+}
+
+.mainHomePagetwo .mycontainer div:hover{
+    color: #FF6347;
+}
+  
+.mainHomePagetwo .mycontainer div img:hover {
+    animation: vibrate 0.5s; /*هنا بقولو اعمل اهتزاز مدته 0.5 ثانيه*/
+}
+  
+@keyframes vibrate {
+    0% { transform: rotate(0deg); }
+    10% { transform: rotate(10deg); }
+    30% { transform: rotate(-10deg); }
+    30% { transform: rotate(0deg); }
+    50% { transform: rotate(7deg); }
+    70% { transform: rotate(0deg); }
+    90% { transform: rotate(-7deg); }
+    100% { transform: rotate(0deg); }
+  }
+
+  
+/* نهاية سيكشن الايكونز */
+
+
+/* بداية جزء التايمر*/
+
+.timersection{
+    margin-top: 27PX;
+}
+
+.timersection .mycontainer {
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top-right-radius:10px;
+    border-top-left-radius:10px;
+}
+
+.timersection .mycontainer .uppersectionl span i {
+    margin-right: 2px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #FF401D;
+}
+
+.timersection .mycontainer .uppersectionl .comma{
+    font-weight: bold;
+    color: rgb(246, 65, 45);
+}
+
+.timersection .mycontainer .uppersectionl div,
+.timersection .mycontainer .uppersectionl h2 {
+    display: inline;
+}
+
+.timerpart {
+    display: inline;
+    padding: 8px;
+    margin: 5px;
+    border-radius: 5px;
+    background-color: #F6412D;
+    color: white;
+    font-weight: bold;
+}
+
+#timer {
+    margin-left: 30px;
+}
+
+.uppersectionr {
+    text-align: right;
+}
+
+.uppersectionr i {
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    padding: 7px;
+    cursor: pointer;
+    
+}
+
+.uppersectionr i:hover {
+    background-color: #F6412D;
+}
+
+/* نهاية سيكشن التايمر  */
+
+
+
+/* بداية اول سيكشن الكارد */
+
+.card {
+    margin-top: 40px;
+    position: relative;
+    margin-right: 40px;
+    /* height: 380px; */
+    height: 430px;
+    /* width: 100px; */
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    padding: 10px;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card .img-container {
+    position: relative;
+}
+
+.img-container img{
+    /* height: 250px;
+    width: 274px; */
+        height: 200px;
+        width: 162px;
+}
+
+/* .original img, .hover-img img{
+    height: 30px;
+    width: 80px;
+} */
+
+.card p i{
+    color: #BBB;
+    font-size: 9px;
+}
+
+/* .card h3 , .card span{
+    padding: 10px;
+    
+} */
+
+.card .original {
+    /* width: 100%; */
+    /* height: auto; */
+    transition: opacity 0.5s;
+}
+
+.card .hover-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* width: 100%; */
+    /* height: auto; */
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.card:hover .original {
+    opacity: 0;
+}
+
+.card:hover .hover-img {
+    opacity: 1;
+}
+
+/* .flip-container {
+    margin-top: 15px;
+    margin-left: 10px;
+} */
+.flip-container p{
+    color: #666;
+}
+
+.flip-box-front, .flip-box-back {
+    /* width: 100%; */
+    backface-visibility: hidden;
+    transition: transform 0.6s;
+}
+
+.flip-box-front ins{
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.flip-box-back {
+    transform: rotateY(180deg);
+    display: flex;
+    justify-content: center;
+
+}
+
+.flip-box-front del{
+    color: #ACACAC;; 
+}
+
+.card:hover .flip-box-front {
+    transform: rotateY(-180deg);
+}
+
+.card:hover .flip-box-back {
+    transform: rotateY(0deg);
+}
+
+.buylater, .buynow {
+    height: 49px;
+    width: max-content;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    color: white;
+}
+
+.buylater {
+    background-color: #007bff;
+    margin-right: 20px;
+}
+
+.buynow {
+    background-color: rgb(240, 53, 53);
+}
+
+.buylater:hover {
+    background-color: blue;
+}
+
+.buynow:hover {
+    background-color: red;
+}
+.custompinkdivider{
+    width: 90px; 
+    height: 6px;
+    margin-top: 10px; 
+    background-color: #FCC6C0; 
+    border-radius: 10px;
+}
+
+
+
+/* نهاية اول سيكشن كارد */
+
+
+
+/* هنا جزء ال3 صور  */
+
+.threepics{
+    margin-top: 25px;
+}
+
+.threepics .mycontainer .threepicsc{
+    display: flex;
+    justify-content: space-between;
+   }
+
+.threepics .mycontainer div img:hover{
+    opacity: 0.7;
+    transition: all 0.5s ease-in-out;
+}
+
+/* خلصنا ال3 صور  */
+
+
+/* بداية السكشن بتاع السويتش */
+
+/* الحته الفوق */
+
+.switchersection{
+    margin-top: 30px;
+   
+}
+
+.switchersection .mycontainer{
+    /* padding-top: 17px; */
+    background-color: white;
+    border-radius: 5px;
+}
+
+.upperswitchersection{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+
+}
+
+.upperswitchersection h3{
+    font-size: 24px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 14px;
+    text-transform: uppercase;
+}
+
+.upperswitchersection h3:hover{
+color: #F6412D;
+font-weight: bolder;
+}
+
+.switchersection .mycontainer .customhr{
+    width:1190px;
+    height: 1px;
+    background-color: #ddd;
+}
+
+/* خلصنا الحته الفوق */
+
+
+/* نبدا فالجزء الاساسي الهو الكارد 2  */
+
+
+.mainproducts .mycontainer{
+    background-color: white;
+    padding-bottom: 70px;
+    
+}
+
+.mainproducts .mycontainer .mylastbuttun{
+    position: relative;
+    left: 40%;
+    top: 35px;
+    display: inline;
+    color: white;
+    background-color: #F6412D;
+    text-transform: uppercase;
+    border-radius: 5px;
+    padding: 10px 50px;
+    cursor: pointer;
+}
+
+.mainproducts .mycontainer .mylastbuttun:hover{
+background-color: #E6200A;
+}
+
+
+/* نهاية منطقة البرودكتس التانيه */
+
+
+/* <!--   الثالث category  Shop  بداية  منطقة   --> */
+
+.category-container {
+    width: 1780;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-top: 40px;
+}
+.category {
+    min-width: 185px;
+    max-width: 250px;
+    flex: 1 1 calc(16.6% - 10px); /* Adjust for 6 columns */
+    border-right: 1px solid #e0e0e0;
+    padding: 9px;
+    box-sizing: border-box; 
+}
+
+.category:last-child {
+    border-right: none;
+}
+.category h3 {
+    font-size: 16px;
+    margin-bottom:20px;
+    margin-top: 5px;
+    border-bottom: 3px solid transparent;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #333;    
+}
+.category h3:hover{
+  color:red;
+  cursor: pointer;
+}
+.category ul {
+    list-style-type: none;
+    padding: 10px;
+    margin: 0;
+}
+
+.category ul li {
+    margin-bottom: 12px;
+    font-size: 12px;
+
+}
+.category ul li a {
+    text-decoration: none;
+    color: #7f7d7d;
+    transition: color 0.3s ease;
+}
+
+.category ul li a:hover {
+    color: #e74c3c;
+}
+.category .view-more {
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #e74c3c;
+    text-decoration: none;
+}
+/* .category .view-more:hover {
+    text-decoration: underline;
+} */
+
+@media (max-width: 768px) {
+    .category-container {
+        flex-direction: column;
+    }
+    .category {
+        border-right: none;
+        border-bottom: 1px solid #e0e0e0;
+    }
+    /* .category:last-child {
+        border-bottom: none;
+    } */
+}
+
+@media (max-width: 480px) {
+    .category {
+        flex: 1 1 100%;
+        border-bottom: 1px solid #e0e0e0;
+    }
+}
+
+
+/* <!--   الثالث category  Shop  نهاية  منطقة   --> */
+
+
+
+/* بداية الفووتر */
+
+
+/* بداية اول فووتر */
+
+.orangedivider{
+    height: 2px;
+    background-color: rgb(246, 65, 45);
+}
+
+
+
+.footerfirst {
+    background-color: white;
+    padding-top: 57px;
+}
+
+.footerfirst .mycontainer {
+    margin-left: 28px;
+    display: flex;
+}
+
+.footerfirst .footerfirstr i {
+    font-size: 17px;
+    padding: 8px;
+    border-radius: 60px;
+    background-color: rgb(238, 241, 241);
+    margin-right: 6px;
+    color: black;
+    font-weight: bold;
+}
+.footerfirst .footerfirstr {
+    margin-left: 30px;
+}
+.footerfirst .footerfirstr div{
+    margin-bottom: 50px;
+    margin-left: 50px;
+}
+
+.footerfirst .footerfirstr div a:hover{
+    color: rgb(246, 65, 45);
+}
+
+.footerfirst .footerfirstr div a{
+    text-decoration: none;
+    color: black;
+}
+
+.footerfirstl {
+    width: 30%;
+}
+
+.footerfirstr {
+    width: 70%;
+    display: flex;
+    
+}
+
+/* نهاية اول فووتر */
+
+.divider {
+    width: 93%;
+    height: 1px;
+    background-color: #DDD;
+    position: relative;
+    left: 48px;
+}
+
+
+
+/* بداية تاني فووتر */
+.footersecond .mycontainer {
+    background-color: white;
+    display: flex;
+    
+}
+
+.footersecond {
+    background-color: white;
+    padding-top: 30px;
+}
+
+.footersecond .mycontainer .footersecondl p, .footersecondc p, .footersecondr p {
+    font-size: 20px;
+    color: #222;
+    text-transform: capitalize;
+    margin-bottom: 20px;
+}
+
+.footersecondl img:hover {
+    opacity: 0.5;
+}
+
+.footersecond .mycontainer {
+    padding-bottom: 27px;
+    justify-content: space-around;
+    margin-left: 0px;
+}
+
+.footersecondc i {
+    font-size: 14px;
+    padding: 13px;
+    border-radius: 60px;
+    background-color: rgb(238, 241, 241);
+    margin-right: 6px;
+    color: #282727;
+}
+
+.footersecondc i:hover {
+    background-color: rgb(246, 65, 45);
+    color: white;
+}
+
+/* نهاية تاني فووتر */
+
+
+
+/* بداية اخر فووتر */
+
+.footerthird {
+    background-color: #F6412D;
+}
+
+.footerthird .mycontainer {
+    background-color: #F6412D;
+    padding-top: 18px;
+    color: white;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footerthirdL {
+    width: 60%;
+}
+
+.footerthirdR {
+    width: 40%;
+}
+
+.footerthirdR ul {
+    list-style: none;
+    display: flex;
+}
+
+.footerthirdR ul li {
+    margin-right: 20px;
+}
+
+.footerthirdR ul li a {
+    text-decoration: none;
+    color: white;
+}
+
+.footerthirdL span:hover {
+    color: black;
+}
+
+.footerthirdR ul li a:hover {
+    color: black;
+}
+
+/* وخلاص كدا اعتقد  */

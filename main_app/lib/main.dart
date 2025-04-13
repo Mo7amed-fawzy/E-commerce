@@ -16,9 +16,8 @@ class MyApp extends StatelessWidget {
       title: 'my Souq',
       theme: ThemeData(
         scaffoldBackgroundColor: Declerations.backgroundColor,
-        cardTheme: const ColorScheme.light(
-          primary: Declerations.secondaryColor,
-        ),
+        cardTheme: CardTheme(color: Declerations.secondaryColor),
+
         appBarTheme: const AppBarTheme(
           elevation: 0,
           iconTheme: IconThemeData(color: Colors.black),

@@ -20,9 +20,9 @@ class _AuthScreenState extends State<AuthScreen> {
   final _signInkey = GlobalKey<FormState>();
   final _forpkey = GlobalKey<FormState>();
 
-  TextEditingController _emailTxt = TextEditingController();
-  TextEditingController _passwordTxt = TextEditingController();
-  TextEditingController _nameTxt = TextEditingController();
+  final TextEditingController _emailTxt = TextEditingController();
+  final TextEditingController _passwordTxt = TextEditingController();
+  final TextEditingController _nameTxt = TextEditingController();
 
   @override
   void dispose() {

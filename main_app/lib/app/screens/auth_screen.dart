@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/app/services/auth_service.dart';
 import 'package:e_commerce_app/components/declerations.dart';
 import 'package:e_commerce_app/widgets/custom_button.dart';
 import 'package:e_commerce_app/widgets/custom_text.dart';
@@ -20,6 +21,8 @@ class _AuthScreenState extends State<AuthScreen> {
   final _signInkey = GlobalKey<FormState>();
   final _forpkey = GlobalKey<FormState>();
 
+  final AuthService _authService = AuthService();
+
   final TextEditingController _emailTxt = TextEditingController();
   final TextEditingController _passwordTxt = TextEditingController();
   final TextEditingController _nameTxt = TextEditingController();
@@ -30,6 +33,15 @@ class _AuthScreenState extends State<AuthScreen> {
     _passwordTxt.dispose();
     _nameTxt.dispose();
     super.dispose();
+  }
+
+  void signUpUser() {
+    _authService.signUpUser(
+      context: context,
+      email: _emailTxt.text,
+      password: _passwordTxt.text,
+      name: _nameTxt.text,
+    );
   }
 
   @override
@@ -85,7 +97,14 @@ class _AuthScreenState extends State<AuthScreen> {
                           hintText: 'Password',
                         ),
                         SizedBox(height: 10),
-                        CustomButton(text: 'Sign Up', onTap: () {}),
+                        CustomButton(
+                          text: 'Sign Up',
+                          onTap: () {
+                            if (_signUpkey.currentState!.validate()) {
+                              signUpUser();
+                            }
+                          },
+                        ),
                       ],
                     ),
                   ),
@@ -115,7 +134,7 @@ class _AuthScreenState extends State<AuthScreen> {
                   padding: const EdgeInsets.all(8),
                   color: Declerations.backgroundColor,
                   child: Form(
-                    key: _signUpkey,
+                    key: _signInkey,
                     child: Column(
                       children: [
                         CustomText(controller: _emailTxt, hintText: 'Email'),

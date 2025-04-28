@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 // buildcontext to make it understand to access the main thread of the screen and build on the its context
@@ -133,3 +134,9 @@ abstract class MyDialogs {
 //     action();
 //   }
 // }
+
+printHere(var obj) {
+  if (kDebugMode) {
+    print(obj);
+  }
+}

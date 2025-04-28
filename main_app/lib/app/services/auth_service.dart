@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:e_commerce_app/app/models/user.dart';
 import 'package:e_commerce_app/app/screens/home_screen.dart';
-import 'package:e_commerce_app/components/declerations.dart';
+import 'package:e_commerce_app/components/declarations.dart';
 import 'package:e_commerce_app/components/error.handling.dart';
 import 'package:e_commerce_app/components/utils.dart';
 import 'package:e_commerce_app/providers/user_provider.dart';
@@ -71,7 +71,8 @@ class AuthService {
       // }
     } catch (e) {
       if (context.mounted) {
-        showSnackBar(context, e.toString());
+        // showSnackBar(context, e.toString());
+        MyDialogs.error(context: context, msg: e.toString());
       }
     }
   }
@@ -139,7 +140,8 @@ class AuthService {
       }
     } catch (e) {
       if (context.mounted) {
-        showSnackBar(context, e.toString());
+        // showSnackBar(context, e.toString());
+        MyDialogs.error(context: context, msg: e.toString());
       }
     }
   }
@@ -199,7 +201,8 @@ class AuthService {
       }
     } catch (e) {
       if (context.mounted) {
-        MyDialogs.error(context: context, msg: e.toString());
+        // MyDialogs.error(context: context, msg: e.toString());
+        printHere(e.toString());
       }
     }
   }

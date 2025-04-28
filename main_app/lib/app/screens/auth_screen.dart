@@ -1,5 +1,5 @@
 import 'package:e_commerce_app/app/services/auth_service.dart';
-import 'package:e_commerce_app/components/declerations.dart';
+import 'package:e_commerce_app/components/declarations.dart';
 import 'package:e_commerce_app/widgets/custom_button.dart';
 import 'package:e_commerce_app/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 enum AuthEnum { signin, signup }
 
 class AuthScreen extends StatefulWidget {
-  static const String routeName = '/auth-sreen';
+  static const String routName = '/auth-sreen';
   const AuthScreen({super.key});
 
   @override
@@ -19,6 +19,7 @@ class _AuthScreenState extends State<AuthScreen> {
 
   final _signUpkey = GlobalKey<FormState>();
   final _signInkey = GlobalKey<FormState>();
+  // ignore: unused_field
   final _forpkey = GlobalKey<FormState>();
 
   final AuthService _authService = AuthService();
@@ -55,7 +56,7 @@ class _AuthScreenState extends State<AuthScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Declerations.greyBackgroundColor,
+      backgroundColor: Declarations.greyBackgroundColor,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -70,14 +71,14 @@ class _AuthScreenState extends State<AuthScreen> {
               ListTile(
                 tileColor:
                     _auth == AuthEnum.signup
-                        ? Declerations.backgroundColor
-                        : Declerations.greyBackgroundColor,
+                        ? Declarations.backgroundColor
+                        : Declarations.greyBackgroundColor,
                 title: const Text(
                   'new customer',
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 leading: Radio(
-                  activeColor: Declerations.secondaryColor,
+                  activeColor: Declarations.secondaryColor,
                   value: AuthEnum.signup,
                   groupValue: _auth,
                   onChanged: (AuthEnum? val) {
@@ -91,18 +92,18 @@ class _AuthScreenState extends State<AuthScreen> {
               if (_auth == AuthEnum.signup)
                 Container(
                   padding: const EdgeInsets.all(8),
-                  color: Declerations.backgroundColor,
+                  color: Declarations.backgroundColor,
                   child: Form(
                     key: _signUpkey,
                     child: Column(
                       children: [
-                        CustomText(controller: _nameTxt, hintText: 'Full Name'),
+                        CustomText(controller: _nameTxt, hinTxt: 'Full Name'),
                         SizedBox(height: 10),
-                        CustomText(controller: _emailTxt, hintText: 'Email'),
+                        CustomText(controller: _emailTxt, hinTxt: 'Email'),
                         SizedBox(height: 10),
                         CustomText(
                           controller: _passwordTxt,
-                          hintText: 'Password',
+                          hinTxt: 'Password',
                         ),
                         SizedBox(height: 10),
                         CustomButton(
@@ -120,14 +121,14 @@ class _AuthScreenState extends State<AuthScreen> {
               ListTile(
                 tileColor:
                     _auth == AuthEnum.signin
-                        ? Declerations.backgroundColor
-                        : Declerations.greyBackgroundColor,
+                        ? Declarations.backgroundColor
+                        : Declarations.greyBackgroundColor,
                 title: const Text(
                   'have an account?',
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 leading: Radio(
-                  activeColor: Declerations.secondaryColor,
+                  activeColor: Declarations.secondaryColor,
                   value: AuthEnum.signin,
                   groupValue: _auth,
                   onChanged: (AuthEnum? val) {
@@ -140,16 +141,16 @@ class _AuthScreenState extends State<AuthScreen> {
               if (_auth == AuthEnum.signin)
                 Container(
                   padding: const EdgeInsets.all(8),
-                  color: Declerations.backgroundColor,
+                  color: Declarations.backgroundColor,
                   child: Form(
                     key: _signInkey,
                     child: Column(
                       children: [
-                        CustomText(controller: _emailTxt, hintText: 'Email'),
+                        CustomText(controller: _emailTxt, hinTxt: 'Email'),
                         SizedBox(height: 10),
                         CustomText(
                           controller: _passwordTxt,
-                          hintText: 'Password',
+                          hinTxt: 'Password',
                         ),
                         SizedBox(height: 10),
                         CustomButton(

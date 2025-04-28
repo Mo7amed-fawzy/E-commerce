@@ -1,8 +1,7 @@
-import 'package:e_commerce_app/app/models/user.dart';
 import 'package:e_commerce_app/app/screens/auth_screen.dart';
-import 'package:e_commerce_app/app/screens/home_screen.dart';
 import 'package:e_commerce_app/app/services/auth_service.dart';
-import 'package:e_commerce_app/components/declerations.dart';
+import 'package:e_commerce_app/widgets/custom_bottom_bar.dart';
+import 'package:e_commerce_app/components/declarations.dart';
 import 'package:e_commerce_app/providers/user_provider.dart';
 import 'package:e_commerce_app/router.dart';
 import 'package:flutter/material.dart';
@@ -38,8 +37,8 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'my Souq',
       theme: ThemeData(
-        scaffoldBackgroundColor: Declerations.backgroundColor,
-        cardTheme: CardTheme(color: Declerations.secondaryColor),
+        scaffoldBackgroundColor: Declarations.backgroundColor,
+        cardTheme: CardTheme(color: Declarations.secondaryColor),
 
         appBarTheme: const AppBarTheme(
           elevation: 0,
@@ -49,7 +48,7 @@ class _MyAppState extends State<MyApp> {
       onGenerateRoute: (settings) => generateRoute(settings),
       home:
           Provider.of<UserProvider>(context).user.token.isNotEmpty
-              ? const HomeScreen()
+              ? const BottomBar()
               : const AuthScreen(),
 
       // Scaffold(

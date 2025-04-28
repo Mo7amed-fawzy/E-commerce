@@ -143,4 +143,64 @@ class AuthService {
       }
     }
   }
+
+  void getUserData(BuildContext context) async {
+    SharedPreferences shredPreferences = await SharedPreferences.getInstance();
+    String? token = shredPreferences.getString("my-Souq-auth-token");
+    if (token == null || token.isEmpty) {
+      shredPreferences.setString("my-Souq-auth-token", '');
+      //if the token is null, it means that the user is not logged in
+      return; //exit the function early since there's no valid token
+    }
+    try {
+      var resToken = await http.post(
+        Uri.parse(ApiKey.isValidToken),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'my-Souq-auth-token': token,
+        },
+      );
+
+      var res = jsonDecode(resToken.body);
+
+      if (res['status'] == true) {
+        http.Response userRes = await http.get(
+          Uri.parse(ApiKey.checkToken),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+            'my-Souq-auth-token': token,
+          },
+        );
+        if (context.mounted) {
+          var userProvider = Provider.of<UserProvider>(context, listen: false);
+          userProvider.setUserFromModel(userRes.body);
+          // Navigator.pushNamedAndRemoveUntil(
+          //   context,
+          //   HomeScreen.routeName,
+          //   (route) => false,
+          // );
+        }
+
+        // } else {
+        //   shredPreferences.setString("my-Souq-auth-token", '');
+        // }
+        // if (context.mounted) {
+        //   httpErrorHandling(
+        //     response: res,
+        //     context: context,
+        //     onSuccess: () {
+        //       Provider.of<UserProvider>(
+        //         context,
+        //         listen: false,
+        //       ).setUserFromModel(res.body);
+        //     },
+        //   );
+        // }
+      }
+    } catch (e) {
+      if (context.mounted) {
+        MyDialogs.error(context: context, msg: e.toString());
+      }
+    }
+  }
 }

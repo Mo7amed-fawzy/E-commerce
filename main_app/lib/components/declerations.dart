@@ -4,9 +4,10 @@ abstract class ApiKey {
   // static const String baseUrl = 'https://api.example.com/';
   static const String http = 'http://localhost:3020';
   static const String httpCinfig = 'http://192.168.1.3:3020';
-  // static const String loginUrl = '${httpCinfig}/api/login';
   static const String signUpUrl = '$httpCinfig/api/signup';
   static const String signInUrl = '$httpCinfig/api/signin';
+  static const String isValidToken = '$httpCinfig/isvalidtoken';
+  static const String checkToken = '$httpCinfig/';
 }
 
 abstract class Declerations {

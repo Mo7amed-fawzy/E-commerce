@@ -3,6 +3,7 @@ const User = require('../models/user');
 const authRouter = express.Router();
 bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const myAuth = require('../components/my_auth');
 
 // authRouter.get('/user', (req, res) => {
 //     res.json({ msg: "M.Fawzy" });
@@ -81,4 +82,46 @@ authRouter.post('/api/signin', async (req, res) => {
 });
 
 
+authRouter.post('/isvalidtoken', async (req, res) => {
+    try {
+        const token = req.header('my-Souq-auth-token');
+        if (!token) {
+            return res.status(401).json({ error: 'Token is required' });
+        }
+        const verifyToken = jwt.verify(token, "myKey");
+        if (!verifyToken) {
+            return res.status(401).json({ error: 'Invalid token' });
+        } else {
+            const user = await User.findById(verifyToken.id);
+            if (!user) {
+                return res.status(404).json({ error: 'User not found' });
+            } else {
+                return res.status(200).json(true);
+
+                //     {
+                //     msg: 'Token is valid',
+                //     user: {
+                //         id: user._id,
+                //         name: user.name,
+                //         email: user.email,
+                //         address: user.address,
+                //         phone: user.phone,
+                //         type: user.type
+                //     }
+                // }
+            }
+
+        }
+    } catch (error) {
+        console.error('Error during token validation:', error);
+        res.status(500).json({
+            error: 'Internal server error'
+        });
+    }
+});
+
+authRouter.get('/', myAuth, async (req, res) => {
+    const user = await User.findById(req.user);
+    res.json({ ...user._doc, token: req.token });
+});
 module.exports = authRouter;

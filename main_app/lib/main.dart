@@ -1,4 +1,6 @@
+import 'package:e_commerce_app/app/models/user.dart';
 import 'package:e_commerce_app/app/screens/auth_screen.dart';
+import 'package:e_commerce_app/app/screens/home_screen.dart';
 import 'package:e_commerce_app/app/services/auth_service.dart';
 import 'package:e_commerce_app/components/declerations.dart';
 import 'package:e_commerce_app/providers/user_provider.dart';
@@ -28,6 +30,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    authService.getUserData(context);
   }
 
   @override
@@ -44,7 +47,10 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
       onGenerateRoute: (settings) => generateRoute(settings),
-      home: const AuthScreen(),
+      home:
+          Provider.of<UserProvider>(context).user.token.isNotEmpty
+              ? const HomeScreen()
+              : const AuthScreen(),
 
       // Scaffold(
       // appBar: AppBar(title: Text('my souq')),

@@ -127,3 +127,9 @@ abstract class MyDialogs {
     scaffold.showSnackBar(snackBar);
   }
 }
+
+// void withMounted(BuildContext context, Function action) {
+//   if (context.mounted) {
+//     action();
+//   }
+// }

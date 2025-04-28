@@ -10,7 +10,11 @@ void httpErrorHandling({
   required VoidCallback onSuccess,
 }) {
   switch (response.statusCode) {
-    case 201:
+    case 201: // for sign up
+      onSuccess();
+
+      break;
+    case 200: // for sign in
       onSuccess();
 
       break;

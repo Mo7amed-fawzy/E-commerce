@@ -6,6 +6,7 @@ abstract class ApiKey {
   static const String httpCinfig = 'http://192.168.1.3:3020';
   // static const String loginUrl = '${httpCinfig}/api/login';
   static const String signUpUrl = '$httpCinfig/api/signup';
+  static const String signInUrl = '$httpCinfig/api/signin';
 }
 
 abstract class Declerations {

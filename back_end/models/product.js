@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const ratingSchema = require('./rate.js');
 
 const productSchema = mongoose.Schema({
     name: {
@@ -27,6 +28,7 @@ const productSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    ratings: [ratingSchema],
     // sold: {
     //     type: Number,
     //     default: 0,
@@ -38,10 +40,6 @@ const productSchema = mongoose.Schema({
     // brand: {
     //     type: String,
     //     required: true,
-    // },
-    // ratings: {
-    //     type: Number,
-    //     default: 0,
     // },
     // numOfReviews: {
     //     type: Number,

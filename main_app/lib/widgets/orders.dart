@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/app/services/home_service.dart';
 import 'package:e_commerce_app/components/utils.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,7 @@ class Orders extends StatefulWidget {
 
 class _OrdersState extends State<Orders> {
   // List<Order>? orders;
-  // HomeService homeService = HomeService();
+  HomeService homeService = HomeService();
 
   @override
   void initState() {

@@ -60,7 +60,10 @@ class AdminService {
         },
       );
     } catch (e) {
-      printHere('An error occurred: $e');
+      MyDialogs.error(
+        context: context,
+        msg: 'Ex in saveProduct ${e.toString()}',
+      );
     }
   }
 
@@ -93,7 +96,10 @@ class AdminService {
         },
       );
     } catch (e) {
-      MyDialogs.error(context: context, msg: e.toString());
+      MyDialogs.error(
+        context: context,
+        msg: 'Ex in getAllProducts ${e.toString()}',
+      );
     }
     return productList;
   }
@@ -121,7 +127,10 @@ class AdminService {
         },
       );
     } catch (e) {
-      MyDialogs.error(context: context, msg: e.toString());
+      MyDialogs.error(
+        context: context,
+        msg: 'Ex in deleteProduct ${e.toString()}',
+      );
     }
   }
 }

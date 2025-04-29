@@ -28,14 +28,14 @@ class _TopButtonsState extends State<TopButtons> {
             AccountButton(
               text: "log out",
               onClick: () {
-                // showAlertDialog(
-                //   context,
-                //   () {
-                //     authService.logOut(context);
-                //   },
-                //   'Stop',
-                //   'Do you want to log out ?',
-                // );
+                showAlertDialog(
+                  context,
+                  () {
+                    // authService.logOut(context);
+                  },
+                  'Stop',
+                  'Do you want to log out ?',
+                );
               },
             ),
           ],

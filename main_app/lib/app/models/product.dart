@@ -1,5 +1,6 @@
 import 'dart:convert';
-// import 'package:my_souq/app/models/rating.dart';
+
+import 'package:e_commerce_app/app/models/rating.dart';
 
 class Product {
   final String name;
@@ -10,7 +11,7 @@ class Product {
   final List<String> images;
   String? id;
   String? userId;
-  // final List<Rating>? rating;
+  final List<Rating>? rating;
   double? selQty;
 
   Product({
@@ -22,7 +23,7 @@ class Product {
     required this.images,
     this.id,
     this.userId,
-    // this.rating,
+    this.rating,
   });
 
   factory Product.getNewEmpty() {
@@ -48,7 +49,7 @@ class Product {
       "images": images,
       "id": id,
       "userId": userId,
-      // "rating": rating,
+      "rating": rating,
     };
   }
 
@@ -65,10 +66,11 @@ class Product {
       ),
       id: json['_id'] ?? '',
       userId: json['userId'] ?? '',
-      // rating:
-      //     json['rating'] != null
-      //         ? List<Rating>.from(json['rating']?.map((x) => Rating.fromMap(x)))
-      //         : null,
+      rating:
+          json['rating'] != null
+              ? List<Rating>.from(json['rating']?.map((x) => Rating.fromMap(x)))
+              // ?.map((x بحولها لماب
+              : null,
     );
   }
 

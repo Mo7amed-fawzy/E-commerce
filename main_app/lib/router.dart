@@ -1,6 +1,10 @@
+import 'package:e_commerce_app/app/models/product.dart';
 import 'package:e_commerce_app/app/screens/add_products.dart';
 import 'package:e_commerce_app/app/screens/auth_screen.dart';
+import 'package:e_commerce_app/app/screens/category_deal_screen.dart';
 import 'package:e_commerce_app/app/screens/home_screen.dart';
+import 'package:e_commerce_app/app/screens/product_details_screen.dart';
+import 'package:e_commerce_app/app/screens/search_screen.dart';
 import 'package:e_commerce_app/widgets/custom_bottom_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -26,24 +30,24 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
         settings: routeSettings,
         builder: (_) => const AddProduct(),
       );
-    // case CategoryDealScreen.routeName:
-    //   var category = routeSettings.arguments as String;
-    //   return MaterialPageRoute(
-    //     settings: routeSettings,
-    //     builder: (_) => CategoryDealScreen(category: category),
-    //   );
-    // case SearchScreen.routeName:
-    //   var txt = routeSettings.arguments as String;
-    //   return MaterialPageRoute(
-    //     settings: routeSettings,
-    //     builder: (_) => SearchScreen(searchTxt: txt),
-    //   );
-    // case ProductDetailScreen.routeName:
-    //   var product = routeSettings.arguments as Product;
-    //   return MaterialPageRoute(
-    //     settings: routeSettings,
-    //     builder: (_) => ProductDetailScreen(product: product),
-    //   );
+    case CategoryDealScreen.routeName:
+      var category = routeSettings.arguments as String;
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => CategoryDealScreen(category: category),
+      );
+    case SearchScreen.routeName:
+      var txt = routeSettings.arguments as String;
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => SearchScreen(searchTxt: txt),
+      );
+    case ProductDetailScreen.routeName:
+      var product = routeSettings.arguments as Product;
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => ProductDetailScreen(product: product),
+      );
     // case AddressScreen.routeName:
     //   var totalAmount = routeSettings.arguments as String;
     //   return MaterialPageRoute(

@@ -5,7 +5,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const authRouter = require('./routes/auth.js');
 const adminRouter = require('./routes/admin.js');
-// const https = require('https');
+const productRouter = require('./routes/product.js');
+
+// const https = require('https');)
 
 const DBC = 'mongodb+srv://m07amed1st:ONTTBzKysUIpIi5k@cluster0.yh53t7d.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 const port = 3020
@@ -22,6 +24,7 @@ const app = express();
 app.use(express.json());
 app.use(authRouter);
 app.use(adminRouter);
+app.use(productRouter);
 // app.use(express.json());
 
 

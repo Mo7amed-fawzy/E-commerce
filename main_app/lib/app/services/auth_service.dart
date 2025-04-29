@@ -72,7 +72,10 @@ class AuthService {
     } catch (e) {
       if (context.mounted) {
         // showSnackBar(context, e.toString());
-        MyDialogs.error(context: context, msg: e.toString());
+        MyDialogs.error(
+          context: context,
+          msg: 'Ex in signUpUser ${e.toString()}',
+        );
       }
     }
   }
@@ -141,7 +144,11 @@ class AuthService {
     } catch (e) {
       if (context.mounted) {
         // showSnackBar(context, e.toString());
-        MyDialogs.error(context: context, msg: e.toString());
+        MyDialogs.error(
+          context: context,
+
+          msg: 'Ex in signInUser ${e.toString()}',
+        );
       }
     }
   }
@@ -202,7 +209,11 @@ class AuthService {
     } catch (e) {
       if (context.mounted) {
         // MyDialogs.error(context: context, msg: e.toString());
-        printHere(e.toString());
+        // printHere(e.toString());
+        MyDialogs.error(
+          context: context,
+          msg: 'Ex in getUserData ${e.toString()}',
+        );
       }
     }
   }

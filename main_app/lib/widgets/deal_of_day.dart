@@ -1,10 +1,15 @@
 import 'package:e_commerce_app/app/models/product.dart';
+import 'package:e_commerce_app/app/screens/product_details_screen.dart';
+import 'package:e_commerce_app/app/services/home_service.dart';
+import 'package:e_commerce_app/widgets/loader.dart';
+import 'package:e_commerce_app/widgets/product_card_horizontal.dart';
 import 'package:flutter/material.dart';
+
 // import 'package:flutter_localizations/flutter_localizations.dart';
 // import 'package:e_commerce_app/l10n/app_localizations.dart'; // تأكد من أنه يتوافق مع مكان تخزين ملف الترجمة لديك
 
 class DealOfDay extends StatefulWidget {
-  const DealOfDay({Key? key}) : super(key: key);
+  const DealOfDay({super.key});
 
   @override
   State<DealOfDay> createState() => _DealOfDayState();
@@ -12,18 +17,18 @@ class DealOfDay extends StatefulWidget {
 
 class _DealOfDayState extends State<DealOfDay> {
   List<Product>? productList;
-  // HomeService homeService = HomeService();
+  HomeService homeService = HomeService();
 
   @override
   void initState() {
     super.initState();
-    // fetchCategories();
+    fetchCategories();
   }
 
-  // fetchCategories() async {
-  //   productList = await homeService.dealOfProducts(context: context);
-  //   setState(() {});
-  // }
+  fetchCategories() async {
+    productList = await homeService.dealOfProducts(context: context);
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,26 +48,26 @@ class _DealOfDayState extends State<DealOfDay> {
         SizedBox(
           height: 500,
           width: double.infinity,
-          // child:
-          //     productList == null
-          //         ? const Loader()
-          //         : ListView.builder(
-          //           itemCount: productList!.length,
-          //           itemBuilder: (context, index) {
-          //             return GestureDetector(
-          //               onTap: () {
-          //                 Navigator.pushNamed(
-          //                   context,
-          //                   ProductDetailScreen.routeName,
-          //                   arguments: productList![index],
-          //                 );
-          //               },
-          //               child: ProductCardHorizontal(
-          //                 product: productList![index],
-          //               ),
-          //             );
-          //           },
-          //         ),
+          child:
+              productList == null
+                  ? const Loader()
+                  : ListView.builder(
+                    itemCount: productList!.length,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            ProductDetailScreen.routeName,
+                            arguments: productList![index],
+                          );
+                        },
+                        child: ProductCardHorizontal(
+                          product: productList![index],
+                        ),
+                      );
+                    },
+                  ),
         ),
       ],
     );

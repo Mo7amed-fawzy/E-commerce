@@ -17,22 +17,22 @@ class AddressBar extends StatelessWidget {
       child: Row(
         children: [
           const Icon(Icons.location_on_outlined, size: 20),
-          Expanded(
-            child: Padding(
-              padding:
-                  AppLocalizations.of(context)!.localeName == 'ar'
-                      ? const EdgeInsets.only(right: 5)
-                      : const EdgeInsets.only(left: 5),
-              child: Text(
-                ' ${AppLocalizations.of(context)!.addressOf} - ${user.name}, ${user.address}',
-                style: const TextStyle(fontWeight: FontWeight.w500),
-                overflow:
-                    AppLocalizations.of(context)!.localeName == 'ar'
-                        ? TextOverflow.clip
-                        : TextOverflow.ellipsis,
-              ),
-            ),
-          ),
+          // Expanded(
+          //   child: Padding(
+          //     padding:
+          //         AppLocalizations.of(context)!.localeName == 'ar'
+          //             ? const EdgeInsets.only(right: 5)
+          //             : const EdgeInsets.only(left: 5),
+          //     child: Text(
+          //       ' ${AppLocalizations.of(context)!.addressOf} - ${user.name}, ${user.address}',
+          //       style: const TextStyle(fontWeight: FontWeight.w500),
+          //       overflow:
+          //           AppLocalizations.of(context)!.localeName == 'ar'
+          //               ? TextOverflow.clip
+          //               : TextOverflow.ellipsis,
+          //     ),
+          //   ),
+          // ),
           const Padding(
             padding: EdgeInsets.only(left: 5, top: 5),
             child: Icon(Icons.arrow_drop_down_outlined, size: 18),

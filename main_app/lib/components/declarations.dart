@@ -10,6 +10,9 @@ abstract class ApiKey {
   static const String signInUrl = '$httpCinfig/api/signin';
   static const String isValidToken = '$httpCinfig/isvalidtoken';
   static const String checkToken = '$httpCinfig/';
+  static const String adminAddProduct = '$httpCinfig/admin/add-product';
+  static const String adminGetProducts = '$httpCinfig/admin/get-products';
+  static const String adminDeletProducts = '$httpCinfig/admin/delete-products';
 }
 
 class Declarations {

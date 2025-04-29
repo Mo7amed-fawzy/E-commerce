@@ -18,6 +18,14 @@ dependencies:
   shared_preferences: ^2.5.3
   badges: ^3.1.2 # can imoprt without this package
   carousel_slider: ^5.0.0
+  dotted_border: ^2.1.0
+  file_picker: ^10.1.2
+  cloudinary_public: ^0.23.1
+  # flutter_speed_dial: ^7.0.0
+  # flutter_rating_bar: ^4.0.1
+  # pay: ^3.2.1
+  # fl_chart: ^0.71.0
+  # intl: ^0.19.0
 
 dev_dependencies:
   flutter_test:

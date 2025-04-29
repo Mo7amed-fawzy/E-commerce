@@ -8,16 +8,17 @@ const authRouter = express.Router();
 
 authRouter.post('/api/signup', async (req, res) => {
    try {
-      const { name, email, password } = req.body;
+      const { name, email, password, type } = req.body; // <-- أضف type هنا
 
       const exisitingUser = await User.findOne({ email });
       if (exisitingUser) {
-         return res.status(400).json({ msg: "Email is already there, " });
+         return res.status(400).json({ msg: "Email is already there" });
       }
 
       const hPassword = await bcrypt.hash(password, 8);
 
-      let user = new User({ email, password: hPassword, name });
+      // أضف type هنا، هيتخزن لو موجود، ولو مش موجود هياخد default
+      let user = new User({ email, password: hPassword, name, type });
 
       user = await user.save();
       res.json(user);
@@ -25,6 +26,7 @@ authRouter.post('/api/signup', async (req, res) => {
       res.status(500).json({ error: e.message });
    }
 });
+
 
 authRouter.post('/api/signin', async (req, res) => {
    try {

@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/app/screens/add_products.dart';
 import 'package:e_commerce_app/app/screens/auth_screen.dart';
 import 'package:e_commerce_app/app/screens/home_screen.dart';
 import 'package:e_commerce_app/widgets/custom_bottom_bar.dart';
@@ -20,11 +21,11 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
         settings: routeSettings,
         builder: (_) => const BottomBar(),
       );
-    // case AddProduct.routeName:
-    //   return MaterialPageRoute(
-    //     settings: routeSettings,
-    //     builder: (_) => const AddProduct(),
-    //   );
+    case AddProduct.routeName:
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => const AddProduct(),
+      );
     // case CategoryDealScreen.routeName:
     //   var category = routeSettings.arguments as String;
     //   return MaterialPageRoute(

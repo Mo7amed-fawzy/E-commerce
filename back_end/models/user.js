@@ -33,8 +33,10 @@ const userSchema = new mongoose.Schema({
 
     },
     type: {
-        default: 'user',
         type: String,
+        default: 'user',
+        enum: ['user', 'admin', 'seller'],
+
     }
 });
 // after create schema create a model from it

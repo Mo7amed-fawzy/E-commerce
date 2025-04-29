@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/app/screens/admin_screen.dart';
 import 'package:e_commerce_app/app/services/auth_service.dart';
 import 'package:e_commerce_app/components/utils.dart';
 import 'package:e_commerce_app/providers/user_provider.dart';
@@ -27,14 +28,14 @@ class _TopButtonsState extends State<TopButtons> {
             AccountButton(
               text: "log out",
               onClick: () {
-                showAlertDialog(
-                  context,
-                  () {
-                    authService.logOut(context);
-                  },
-                  'Stop',
-                  'Do you want to log out ?',
-                );
+                // showAlertDialog(
+                //   context,
+                //   () {
+                //     authService.logOut(context);
+                //   },
+                //   'Stop',
+                //   'Do you want to log out ?',
+                // );
               },
             ),
           ],
@@ -48,11 +49,11 @@ class _TopButtonsState extends State<TopButtons> {
                 if (user.type == "admin") {
                   Navigator.pushNamed(context, AdminScreen.routeName);
                 } else {
-                  showAlertDialog2(
-                    context,
-                    'Stop',
-                    'you don\'t have an access permission',
-                  );
+                  // showAlertDialog2(
+                  //   context,
+                  //   'Stop',
+                  //   'you don\'t have an access permission',
+                  // );
                 }
               },
             ),

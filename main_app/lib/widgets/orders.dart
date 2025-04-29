@@ -61,16 +61,16 @@ class _OrdersState extends State<Orders> {
                 ],
               ),
               //table data
-              if (orders != null)
-                for (int i = 0; i < orders!.length; i++)
-                  tableRow(
-                    context,
-                    image: orders![i].products[0].images[0],
-                    amount: orders![i].totalPrice.toString(),
-                    status: orders![i].status,
-                    index: (i + 1).toString(),
-                    i: i,
-                  ),
+              // if (orders != null)
+              //   for (int i = 0; i < orders!.length; i++)
+              //     tableRow(
+              //       context,
+              //       image: orders![i].products[0].images[0],
+              //       amount: orders![i].totalPrice.toString(),
+              //       status: orders![i].status,
+              //       index: (i + 1).toString(),
+              //       i: i,
+              //     ),
             ],
           ),
         ],
@@ -110,22 +110,22 @@ class _OrdersState extends State<Orders> {
             Container(
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: getStatusColor(status),
+                // color: getStatusColor(status),
               ),
               height: 10,
               width: 10,
             ),
             const SizedBox(width: 10),
-            Text(getStatus(status)),
+            // Text(getStatus(status)),
           ],
         ),
         InkWell(
           onTap: () {
-            Navigator.pushNamed(
-              context,
-              OrderDetailsScreen.routeName,
-              arguments: orders![i],
-            );
+            // Navigator.pushNamed(
+            // context,
+            // OrderDetailsScreen.routeName,
+            // arguments: orders![i],
+            // );
           },
           child: Container(
             decoration: BoxDecoration(

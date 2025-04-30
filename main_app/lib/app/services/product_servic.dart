@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:e_commerce_app/app/models/product.dart';
+import 'package:e_commerce_app/app/models/user.dart';
 import 'package:e_commerce_app/components/declarations.dart';
 import 'package:e_commerce_app/components/error.handling.dart';
 import 'package:e_commerce_app/components/utils.dart';
@@ -19,7 +20,7 @@ class ProductServices {
 
     try {
       final http.Response res = await http.post(
-        Uri.parse(ApiKey.getProducts),
+        Uri.parse(ApiKey.rateProduct),
         headers: {
           'Content-Type': 'application/json ; charset=UTF-8',
           'my-Souq-auth-token': provider.user.token,
@@ -40,7 +41,60 @@ class ProductServices {
     } catch (e) {
       MyDialogs.error(
         context: context,
-        msg: 'Ex in ProductServices ${e.toString()}',
+        msg: 'Ex in rateProduct ${e.toString()}',
+      );
+    }
+  }
+
+  void addProductToCart({
+    required BuildContext context,
+    required Product product,
+    required double qty,
+  }) async {
+    final provider = Provider.of<UserProvider>(context, listen: false);
+    try {
+      http.Response res;
+
+      if (qty < 0) {
+        res = await http.delete(
+          Uri.parse('${ApiKey.removeFromCart}${product.id}'),
+          headers: {
+            'Content-Type': 'application/json ; charset=UTF-8',
+            'my-Souq-auth-token': provider.user.token,
+          },
+        );
+      } else {
+        res = await http.post(
+          Uri.parse(ApiKey.addToCart),
+          headers: {
+            'Content-Type': 'application/json ; charset=UTF-8',
+            'my-Souq-auth-token': provider.user.token,
+          },
+          body: jsonEncode({'id': product.id!, 'qty': qty}),
+        );
+      }
+
+      httpErrorHandling(
+        response: res,
+        context: context,
+        onSuccess: () {
+          User user = provider.user.copyWith(
+            cart: jsonDecode(res.body)['cart'],
+          );
+          provider.setObjectUser(user);
+
+          if (qty > 0) {
+            MyDialogs.success(
+              context: context,
+              msg: 'Product added to cart successfully',
+            );
+          }
+        },
+      );
+    } catch (e) {
+      MyDialogs.error(
+        context: context,
+        msg: 'Ex in addProductToCart ${e.toString()}',
       );
     }
   }

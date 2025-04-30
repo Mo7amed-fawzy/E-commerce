@@ -22,16 +22,16 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   void initState() {
     super.initState();
-    fetchCategories();
+    // fetchCategories();
   }
 
-  fetchCategories() async {
-    productList = await homeService.searchForProducts(
-      context: context,
-      txt: widget.searchTxt,
-    );
-    setState(() {});
-  }
+  // fetchCategories() async {
+  //   productList = await homeService.searchForProducts(
+  //     context: context,
+  //     txt: widget.searchTxt,
+  //   );
+  //   setState(() {});
+  // }
 
   @override
   Widget build(BuildContext context) {

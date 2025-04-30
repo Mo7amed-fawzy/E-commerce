@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const authRouter = require('./routes/auth.js');
 const adminRouter = require('./routes/admin.js');
 const productRouter = require('./routes/product.js');
+const userRouter = require('./routes/user.js');
 
 // const https = require('https');)
 
@@ -25,6 +26,7 @@ app.use(express.json());
 app.use(authRouter);
 app.use(adminRouter);
 app.use(productRouter);
+app.use(userRouter);
 // app.use(express.json());
 
 

@@ -8,6 +8,7 @@ class User {
   final String email;
   final String type;
   final String token;
+  final List<dynamic> cart;
 
   User({
     required this.id,
@@ -17,6 +18,7 @@ class User {
     required this.address,
     required this.type,
     required this.token,
+    required this.cart,
   });
 
   factory User.getNewEmptyUser() {
@@ -28,6 +30,7 @@ class User {
       address: '',
       type: '',
       token: '',
+      cart: [],
     );
   }
 
@@ -41,6 +44,7 @@ class User {
       'email': email,
       'type': type,
       'token': token,
+      'cart': cart,
     };
   }
 
@@ -55,6 +59,10 @@ class User {
       email: json['email'] != null ? json['email'] as String : '',
       type: json['type'] != null ? json['type'] as String : '',
       token: json['token'] != null ? json['token'] as String : '',
+      // cart: json['cart'] != null ? json['cart'] as List<dynamic> : [],
+      cart: List<Map<String, dynamic>>.from(
+        json['cart']?.map((x) => Map<String, dynamic>.from(x)),
+      ),
     );
   }
 
@@ -64,4 +72,27 @@ class User {
   factory User.fromJson(String source) => User.fromMap(json.decode(source));
   // source is the String(JSON) from Api
   // json to map(json.decode(source)) => map to User object (using fromMap()) (decrypt it)
+
+  User copyWith({
+    String? id,
+    String? name,
+    String? password,
+    String? address,
+    String? email,
+    String? type,
+    String? token,
+    List<dynamic>? cart,
+  }) {
+    return User(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      password: password ?? this.password,
+      address: address ?? this.address,
+      email: email ?? this.email,
+      type: type ?? this.type,
+      token: token ?? this.token,
+      cart: cart ?? this.cart,
+    );
+    //(cart sys make a copy of user data) if data found take it isNotFound ? return empty values
+  }
 }

@@ -1,7 +1,8 @@
-const User = require('../models/user');
 const jwt = require('jsonwebtoken');
+const User = require('../models/user');
 
 const admin = async (req, res, next) => {
+
     try {
         const token = req.header('my-souq-auth-token');
         if (!token) {
@@ -14,8 +15,7 @@ const admin = async (req, res, next) => {
         }
         const user = await User.findById(verified.id);
         if (user.type == 'user' || user.type == 'seller') {
-            return res.status(401).json({ msg: "this user is not admin " })
-
+            return res.status(401).json({ msg: 'this user is not admin ' });
         }
         req.user = verified.id;
         req.token = token;

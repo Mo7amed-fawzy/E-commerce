@@ -1,21 +1,23 @@
 const mongoose = require('mongoose');
-const ratingSchema = require('./rate.js');
+const reqtingSchema = require('./rate');
 
 const productSchema = mongoose.Schema({
     name: {
         type: String,
         required: true,
-        trim: true,
+        trim: true
     },
     description: {
         type: String,
         required: true,
-        trim: true,
+        trim: true
     },
-    images: {
-        type: Array,
-        required: true,
-    },
+    images: [
+        {
+            type: String,
+            required: true,
+        }
+    ],
     price: {
         type: Number,
         required: true,
@@ -27,26 +29,32 @@ const productSchema = mongoose.Schema({
     category: {
         type: String,
         required: true,
+        trim: true
     },
-    ratings: [ratingSchema],
-    // sold: {
-    //     type: Number,
-    //     default: 0,
-    // },
-    // color: {
-    //     type: String,
-    //     required: true,
-    // },
-    // brand: {
-    //     type: String,
-    //     required: true,
-    // },
-    // numOfReviews: {
-    //     type: Number,
-    //     default: 0,
-    // },
-}
-)
+    rating: [reqtingSchema]
+});
 
-const product = mongoose.model('product', productSchema);
-module.exports = product;
+
+// sold: {
+//     type: Number,
+//     default: 0,
+// },
+// color: {
+//     type: String,
+//     required: true,
+// },
+// brand: {
+//     type: String,
+//     required: true,
+// },
+// numOfReviews: {
+//     type: Number,
+//     default: 0,
+// },
+
+// products[i] > qty
+
+const Product = mongoose.model('Product', productSchema);
+module.exports = { Product, productSchema };
+
+// need use product as model and sckema like rating using it as a sckema (right as a model)

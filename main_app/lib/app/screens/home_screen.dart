@@ -1,43 +1,120 @@
-import 'package:e_commerce_app/providers/user_provider.dart';
+import 'package:e_commerce_app/app/screens/search_screen.dart';
+import 'package:e_commerce_app/components/declarations.dart';
+import 'package:e_commerce_app/main.dart';
+import 'package:e_commerce_app/widgets/address_bar.dart';
+import 'package:e_commerce_app/widgets/carousal_image.dart';
+import 'package:e_commerce_app/widgets/deal_of_day.dart';
+import 'package:e_commerce_app/widgets/top_categories.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
-  static const String routeName = '/home-screen';
+  static const String routeName = '/home';
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  void searchForProduct(String txt) {
+    Navigator.pushNamed(context, SearchScreen.routeName, arguments: txt);
+  }
+
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<UserProvider>(context).user;
-
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+      appBar: AppBar(
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: Declarations.appBarGradient,
+          ),
+        ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Icon(
-              Icons.arrow_downward_outlined,
-              size: 100,
-              color: Colors.red.withValues(alpha: 0.5),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-
+            Expanded(
               child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(20)),
-                  border: Border.all(color: Colors.red),
+                height: 42,
+                margin: const EdgeInsets.only(left: 15),
+                child: Material(
+                  borderRadius: BorderRadius.circular(7),
+                  elevation: 1,
+                  child: TextFormField(
+                    onFieldSubmitted: searchForProduct,
+                    decoration: InputDecoration(
+                      prefixIcon: InkWell(
+                        onTap: () {},
+                        child: const Padding(
+                          padding: EdgeInsets.only(left: 6),
+                          child: Icon(
+                            Icons.search,
+                            color: Colors.black,
+                            size: 23,
+                          ),
+                        ),
+                      ),
+                      filled: true,
+                      fillColor: Colors.white,
+                      contentPadding: const EdgeInsets.only(top: 10),
+                      border: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(7)),
+                        borderSide: BorderSide.none,
+                      ),
+                      enabledBorder: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(7)),
+                        borderSide: BorderSide(color: Colors.black38, width: 1),
+                      ),
+                      hintText: AppLocalizations.of(context)!.searchInMySouq,
+                    ),
+                  ),
                 ),
-
-                child: Text(user.toJson()),
               ),
             ),
+            Container(
+              color: Colors.transparent,
+              height: 42,
+              margin: const EdgeInsets.symmetric(horizontal: 2),
+              child: DropdownButton<Language>(
+                underline: const SizedBox(),
+                icon: const Icon(Icons.language, color: Colors.white),
+                onChanged: (Language? language) {
+                  if (language != null) {
+                    MyApp.setLocale(context, Locale(language.languageCode, ''));
+                  }
+                },
+                items:
+                    Language.languageList()
+                        .map<DropdownMenuItem<Language>>(
+                          (e) => DropdownMenuItem<Language>(
+                            value: e,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: <Widget>[
+                                Text(
+                                  e.flag,
+                                  style: const TextStyle(fontSize: 15),
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
+                        .toList(),
+              ),
+            ),
+          ],
+        ),
+      ),
+      body: const SingleChildScrollView(
+        child: Column(
+          children: [
+            AddressBar(),
+            SizedBox(height: 10),
+            TopCategories(),
+            SizedBox(height: 10),
+            CarouselImage(),
+            SizedBox(height: 10),
+            DealOfDay(),
           ],
         ),
       ),

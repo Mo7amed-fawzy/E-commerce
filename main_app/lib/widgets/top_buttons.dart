@@ -31,7 +31,7 @@ class _TopButtonsState extends State<TopButtons> {
                 showAlertDialog(
                   context,
                   () {
-                    // authService.logOut(context);
+                    authService.logOut(context);
                   },
                   'Stop',
                   'Do you want to log out ?',

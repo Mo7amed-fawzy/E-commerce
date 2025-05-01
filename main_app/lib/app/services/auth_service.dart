@@ -201,8 +201,6 @@ class AuthService {
       }
     } catch (e) {
       if (context.mounted) {
-        // MyDialogs.error(context: context, msg: e.toString());
-        // printHere(e.toString());
         MyDialogs.error(
           context: context,
           msg: 'Ex in getUserData ${e.toString()}',

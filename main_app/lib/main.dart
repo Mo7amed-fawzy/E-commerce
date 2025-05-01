@@ -1,4 +1,3 @@
-import 'package:e_commerce_app/app/screens/admin_screen.dart';
 import 'package:e_commerce_app/app/screens/auth_screen.dart';
 import 'package:e_commerce_app/app/services/auth_service.dart';
 import 'package:e_commerce_app/providers/user_provider.dart';

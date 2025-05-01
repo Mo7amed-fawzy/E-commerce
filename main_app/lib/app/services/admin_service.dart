@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:cloudinary_public/cloudinary_public.dart';
+import 'package:e_commerce_app/app/models/order.dart';
 import 'package:e_commerce_app/app/models/product.dart';
 import 'package:e_commerce_app/components/declarations.dart';
 import 'package:e_commerce_app/components/error.handling.dart';
@@ -118,6 +119,69 @@ class AdminService {
           'my-Souq-auth-token': userProvider.user.token,
         },
         body: jsonEncode({'id': product.id}),
+      );
+      httpErrorHandling(
+        response: res,
+        context: context,
+        onSuccess: () {
+          onSuccess();
+        },
+      );
+    } catch (e) {
+      MyDialogs.error(
+        context: context,
+        msg: 'Ex in deleteProduct ${e.toString()}',
+      );
+    }
+  }
+
+  Future<List<Order>> getAllOrders({required BuildContext context}) async {
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    List<Order> orderList = [];
+
+    try {
+      http.Response res = await http.get(
+        Uri.parse(ApiKey.getAllProducts),
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+          'my-souq-auth-token': userProvider.user.token,
+        },
+      );
+      httpErrorHandling(
+        response: res,
+        context: context,
+        onSuccess: () {
+          for (int i = 0; i < jsonDecode(res.body).length; i++) {
+            orderList.add(Order.fromJson(jsonEncode(jsonDecode(res.body)[i])));
+          }
+        },
+      );
+    } catch (e) {
+      debugPrint(e.toString());
+      // showSnackBar(context, e.toString());
+      MyDialogs.error(
+        context: context,
+        msg: 'Ex in getMyOrders ${e.toString()} ',
+      );
+    }
+    return orderList;
+  }
+
+  void changeOrderStatus({
+    required BuildContext context,
+    required int status,
+    required Order order,
+    required VoidCallback onSuccess,
+  }) async {
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    try {
+      http.Response res = await http.post(
+        Uri.parse(ApiKey.updateOrderStatus),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          'my-Souq-auth-token': userProvider.user.token,
+        },
+        body: jsonEncode({'id': order.id, 'status': status}),
       );
       httpErrorHandling(
         response: res,

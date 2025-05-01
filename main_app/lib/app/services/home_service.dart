@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:e_commerce_app/app/models/order.dart';
 import 'package:e_commerce_app/app/models/product.dart';
 import 'package:e_commerce_app/components/declarations.dart';
 import 'package:e_commerce_app/components/error.handling.dart';
@@ -81,5 +82,37 @@ class HomeService {
     }
 
     return productList;
+  }
+
+  Future<List<Order>> getMyOrders({required BuildContext context}) async {
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    List<Order> orderList = [];
+
+    try {
+      http.Response res = await http.get(
+        Uri.parse(ApiKey.myOrders),
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+          'my-souq-auth-token': userProvider.user.token,
+        },
+      );
+      httpErrorHandling(
+        response: res,
+        context: context,
+        onSuccess: () {
+          for (int i = 0; i < jsonDecode(res.body).length; i++) {
+            orderList.add(Order.fromJson(jsonEncode(jsonDecode(res.body)[i])));
+          }
+        },
+      );
+    } catch (e) {
+      debugPrint(e.toString());
+      // showSnackBar(context, e.toString());
+      MyDialogs.error(
+        context: context,
+        msg: 'Ex in getMyOrders ${e.toString()} ',
+      );
+    }
+    return orderList;
   }
 }

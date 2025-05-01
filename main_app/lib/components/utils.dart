@@ -190,3 +190,59 @@ printHere(var obj) {
     print(obj);
   }
 }
+
+showAlertDialog2(BuildContext context, String txtHead, String txtMsg) {
+  Widget cancelButton = TextButton(
+    onPressed: () {
+      Navigator.pop(context);
+    },
+    child: const Text('OK'),
+  );
+
+  AlertDialog alertDialog = AlertDialog(
+    title: Text(txtHead),
+    content: Text(txtMsg),
+    actions: [cancelButton],
+  );
+
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alertDialog;
+    },
+  );
+}
+
+String getStatus(int value) {
+  switch (value) {
+    case 0:
+      return "preparing";
+    case 1:
+      return "Preparing";
+    case 2:
+      return "Ready";
+    case 3:
+      return "On Way";
+    case 4:
+      return "Completed";
+    default:
+      return "preparing";
+  }
+}
+
+Color? getStatusColor(int value) {
+  switch (value) {
+    case 0:
+      return Colors.green;
+    case 1:
+      return Colors.blue;
+    case 2:
+      return Colors.yellowAccent;
+    case 3:
+      return Colors.deepOrange;
+    case 4:
+      return Colors.red;
+    default:
+      return Colors.green;
+  }
+}

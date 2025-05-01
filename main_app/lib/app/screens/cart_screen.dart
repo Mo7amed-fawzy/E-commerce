@@ -20,7 +20,9 @@ class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
     final user = context.watch<UserProvider>().user;
+
     int sum = 0;
+
     user.cart
         .map((e) => sum += e['qty'] * e['product']['price'] as int)
         .toList();

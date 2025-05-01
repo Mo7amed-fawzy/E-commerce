@@ -49,11 +49,11 @@ class _TopButtonsState extends State<TopButtons> {
                 if (user.type == "admin") {
                   Navigator.pushNamed(context, AdminScreen.routeName);
                 } else {
-                  // showAlertDialog2(
-                  //   context,
-                  //   'Stop',
-                  //   'you don\'t have an access permission',
-                  // );
+                  showAlertDialog2(
+                    context,
+                    'Stop',
+                    'you don\'t have an access permission',
+                  );
                 }
               },
             ),

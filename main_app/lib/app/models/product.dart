@@ -60,16 +60,12 @@ class Product {
       price: json['price']?.toDouble() ?? 0.00,
       qty: json['qty']?.toDouble() ?? 0.00,
       category: json['category'] ?? '',
-      images: List<String>.from(
-        json['images'] ??
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ718nztPNJfCbDJjZG8fOkejBnBAeQw5eAUA&s',
-      ),
+      images: List<String>.from(json['images']),
       id: json['_id'] ?? '',
       userId: json['userId'] ?? '',
       rating:
           json['rating'] != null
               ? List<Rating>.from(json['rating']?.map((x) => Rating.fromMap(x)))
-              // ?.map((x بحولها لماب
               : null,
     );
   }

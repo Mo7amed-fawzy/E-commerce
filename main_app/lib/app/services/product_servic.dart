@@ -98,4 +98,75 @@ class ProductServices {
       );
     }
   }
+
+  void saveUserAddress({
+    required BuildContext context,
+    required String address,
+  }) async {
+    final provider = Provider.of<UserProvider>(context, listen: false);
+
+    try {
+      http.Response res = await http.post(
+        Uri.parse(ApiKey.saveUserAddress),
+        headers: {
+          'Content-Type': 'application/json ; charset=UTF-8',
+          'my-Souq-auth-token': provider.user.token,
+        },
+        body: jsonEncode({'address': address}),
+      );
+      httpErrorHandling(
+        response: res,
+        context: context,
+        onSuccess: () {
+          MyDialogs.success(
+            context: context,
+            msg: 'Address saved successfully',
+          );
+        },
+      );
+    } catch (e) {
+      MyDialogs.error(
+        context: context,
+        msg: 'Ex in saveUserAdress ${e.toString()}',
+      );
+    }
+  }
+
+  void setAnOrder({
+    required BuildContext context,
+    required String address,
+    required double totalPrice,
+    required String paymentMethod,
+  }) async {
+    final provider = Provider.of<UserProvider>(context, listen: false);
+
+    try {
+      http.Response res = await http.post(
+        Uri.parse(ApiKey.setOrder),
+        headers: {
+          'Content-Type': 'application/json ; charset=UTF-8',
+          'my-Souq-auth-token': provider.user.token,
+        },
+        body: jsonEncode({
+          'cart': provider.user.cart,
+          'address': address,
+          'totalPrice': totalPrice,
+          'paymentMethod': paymentMethod,
+        }),
+      );
+
+      httpErrorHandling(
+        response: res,
+        context: context,
+        onSuccess: () {
+          MyDialogs.success(context: context, msg: 'Order placed successfully');
+        },
+      );
+    } catch (e) {
+      MyDialogs.error(
+        context: context,
+        msg: 'Ex in setAnOrder ${e.toString()}',
+      );
+    }
+  }
 }

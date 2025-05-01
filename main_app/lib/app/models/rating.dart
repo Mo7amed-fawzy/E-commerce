@@ -7,17 +7,17 @@ class Rating {
   Rating({required this.userId, required this.rating});
 
   factory Rating.getNew() {
-    return Rating(userId: '', rating: 0);
+    return Rating(userId: '', rating: 0.0);
   }
 
   Map<String, dynamic> toMap() {
-    return {'userId': userId, 'rating': rating};
+    return {"userId": userId, "rating": rating};
   }
 
-  factory Rating.fromMap(Map<String, dynamic> map) {
+  factory Rating.fromMap(Map<String, dynamic> json) {
     return Rating(
-      userId: map['userId'] ?? '',
-      rating: map['rating']?.toDouble() ?? 0.00,
+      userId: json["userId"] ?? '',
+      rating: json['rating']?.toDouble() ?? 0.00,
     );
   }
 

@@ -1,28 +1,29 @@
 import 'package:e_commerce_app/app/models/order.dart';
 import 'package:e_commerce_app/app/screens/order_details_screen.dart';
-import 'package:e_commerce_app/app/services/home_service.dart';
+import 'package:e_commerce_app/app/services/admin_service.dart';
 import 'package:e_commerce_app/components/utils.dart';
+import 'package:e_commerce_app/widgets/loader.dart';
 import 'package:flutter/material.dart';
 
-class Orders extends StatefulWidget {
-  const Orders({super.key});
+class AdminOrdersScreen extends StatefulWidget {
+  const AdminOrdersScreen({super.key});
 
   @override
-  State<Orders> createState() => _OrdersState();
+  State<AdminOrdersScreen> createState() => _AdminOrdersScreenState();
 }
 
-class _OrdersState extends State<Orders> {
+class _AdminOrdersScreenState extends State<AdminOrdersScreen> {
   List<Order>? orders;
-  HomeService homeService = HomeService();
+  AdminService adminService = AdminService();
 
   @override
   void initState() {
     super.initState();
-    getAllUserOrders();
+    getAllAdminOrders();
   }
 
-  void getAllUserOrders() async {
-    orders = await homeService.getMyOrders(context: context);
+  void getAllAdminOrders() async {
+    orders = await adminService.getAllOrders(context: context);
     setState(() {});
   }
 
@@ -46,37 +47,38 @@ class _OrdersState extends State<Orders> {
             ],
           ),
           const Divider(thickness: 0.5, color: Colors.grey),
-
-          Table(
-            defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-            children: [
-              // table head
-              TableRow(
-                decoration: const BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(color: Colors.grey, width: 0.5),
-                  ),
-                ),
+          orders == null
+              ? const Loader()
+              : Table(
+                defaultVerticalAlignment: TableCellVerticalAlignment.middle,
                 children: [
-                  tableHeader("Order"),
-                  tableHeader("Amount"),
-                  tableHeader("Status"),
-                  tableHeader(""),
+                  // table head
+                  TableRow(
+                    decoration: const BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(color: Colors.grey, width: 0.5),
+                      ),
+                    ),
+                    children: [
+                      tableHeader("Order"),
+                      tableHeader("Amount"),
+                      tableHeader("Status"),
+                      tableHeader(""),
+                    ],
+                  ),
+                  //table data
+                  if (orders != null)
+                    for (int i = 0; i < orders!.length; i++)
+                      tableRow(
+                        context,
+                        image: orders![i].products[0].images[0],
+                        amount: orders![i].totalPrice.toString(),
+                        status: orders![i].status,
+                        index: (i + 1).toString(),
+                        i: i,
+                      ),
                 ],
               ),
-              // table data
-              if (orders != null)
-                for (int i = 0; i < orders!.length; i++)
-                  tableRow(
-                    context,
-                    image: orders![i].products[0].images[0],
-                    amount: orders![i].totalPrice.toString(),
-                    status: orders![i].status,
-                    index: (i + 1).toString(),
-                    i: i,
-                  ),
-            ],
-          ),
         ],
       ),
     );

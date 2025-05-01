@@ -1,8 +1,12 @@
+import 'package:e_commerce_app/app/models/order.dart';
 import 'package:e_commerce_app/app/models/product.dart';
 import 'package:e_commerce_app/app/screens/add_products.dart';
+import 'package:e_commerce_app/app/screens/address_screen.dart';
+import 'package:e_commerce_app/app/screens/admin_screen.dart';
 import 'package:e_commerce_app/app/screens/auth_screen.dart';
 import 'package:e_commerce_app/app/screens/category_deal_screen.dart';
 import 'package:e_commerce_app/app/screens/home_screen.dart';
+import 'package:e_commerce_app/app/screens/order_details_screen.dart';
 import 'package:e_commerce_app/app/screens/product_details_screen.dart';
 import 'package:e_commerce_app/app/screens/search_screen.dart';
 import 'package:e_commerce_app/widgets/custom_bottom_bar.dart';
@@ -48,23 +52,23 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
         settings: routeSettings,
         builder: (_) => ProductDetailScreen(product: product),
       );
-    // case AddressScreen.routeName:
-    //   var totalAmount = routeSettings.arguments as String;
-    //   return MaterialPageRoute(
-    //     settings: routeSettings,
-    //     builder: (_) => AddressScreen(totalAmount: totalAmount),
-    //   );
-    // case OrderDetailsScreen.routeName:
-    //   var order = routeSettings.arguments as Order;
-    //   return MaterialPageRoute(
-    //     settings: routeSettings,
-    //     builder: (_) => OrderDetailsScreen(order: order),
-    //   );
-    // case AdminScreen.routeName:
-    //   return MaterialPageRoute(
-    //     settings: routeSettings,
-    //     builder: (_) => const AdminScreen(),
-    //   );
+    case AddressScreen.routeName:
+      var totalAmount = routeSettings.arguments as String;
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => AddressScreen(totalAmount: totalAmount),
+      );
+    case OrderDetailsScreen.routeName:
+      var order = routeSettings.arguments as Order;
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => OrderDetailsScreen(order: order),
+      );
+    case AdminScreen.routeName:
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => const AdminScreen(),
+      );
     default:
       return MaterialPageRoute(
         settings: routeSettings,

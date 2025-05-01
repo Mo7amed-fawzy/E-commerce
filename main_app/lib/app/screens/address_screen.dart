@@ -1,17 +1,16 @@
-// import 'package:e_commerce_app/app/services/product_services.dart';
-// import 'package:e_commerce_app/app/widgets/custom_button.dart';
-// import 'package:e_commerce_app/app/widgets/custom_text.dart';
-// import 'package:pay/pay.dart';
-// import 'package:e_commerce_app/components/utils.dart';
+import 'package:e_commerce_app/app/services/product_servic.dart';
 import 'package:e_commerce_app/components/declarations.dart';
+import 'package:e_commerce_app/components/utils.dart';
 import 'package:e_commerce_app/providers/user_provider.dart';
+import 'package:e_commerce_app/widgets/custom_button.dart';
 import 'package:e_commerce_app/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
+import 'package:pay/pay.dart';
 
 import 'package:provider/provider.dart';
 
 class AddressScreen extends StatefulWidget {
-  const AddressScreen({Key? key, required this.totalAmount}) : super(key: key);
+  const AddressScreen({super.key, required this.totalAmount});
 
   static const String routeName = '/address';
   final String totalAmount;
@@ -21,38 +20,38 @@ class AddressScreen extends StatefulWidget {
 }
 
 class _AddressScreenState extends State<AddressScreen> {
-  // final ProductServices productServices = ProductServices();
+  final ProductServices productServices = ProductServices();
   final TextEditingController addressTxt = TextEditingController();
   final TextEditingController homeTxt = TextEditingController();
   final TextEditingController areaTxt = TextEditingController();
   final TextEditingController specialTxt = TextEditingController();
   final _addressFormScreen = GlobalKey<FormState>();
 
-  // final List<PaymentItem> _paymentItems = [];
-  // late PaymentConfiguration _paymentConfiguration;
+  final List<PaymentItem> _paymentItems = [];
+  late PaymentConfiguration _paymentConfiguration;
 
   @override
   void initState() {
     super.initState();
-    // _paymentItems.add(
-    //   PaymentItem(
-    //     label: 'Total',
-    //     amount: widget.totalAmount,
-    //     status: PaymentItemStatus.final_price,
-    //   ),
-    // );
-    // PaymentConfiguration.fromAsset('gpay.json').then((config) {
-    //   setState(() {
-    //     _paymentConfiguration = config;
-    //   });
-    // });
+    _paymentItems.add(
+      PaymentItem(
+        label: 'Total',
+        amount: widget.totalAmount,
+        status: PaymentItemStatus.final_price,
+      ),
+    );
+    PaymentConfiguration.fromAsset('gpay.json').then((config) {
+      setState(() {
+        _paymentConfiguration = config;
+      });
+    });
   }
 
-  // void _handlePaymentResult(Map<String, dynamic> paymentResult) {
-  //   // هنا تقدر تتعامل مع نتيجة الدفع، مثلا:
-  //   printHere('Payment Result: $paymentResult');
-  //   // وممكن تبعت اوردر لو عايز بعد الدفع
-  // }
+  void _handlePaymentResult(Map<String, dynamic> paymentResult) {
+    // هنا تقدر تتعامل مع نتيجة الدفع، مثلا:
+    printHere('Payment Result: $paymentResult');
+    // وممكن تبعت اوردر لو عايز بعد الدفع
+  }
 
   void payPressed(String theAddress, String paymentMethod) {
     bool formOk =
@@ -60,25 +59,25 @@ class _AddressScreenState extends State<AddressScreen> {
         homeTxt.text.isNotEmpty ||
         areaTxt.text.isNotEmpty ||
         specialTxt.text.isNotEmpty;
-    // if (formOk) {
-    //   if (_addressFormScreen.currentState!.validate()) {
-    //     theAddress =
-    //         " ${addressTxt.text} , ${homeTxt.text} , ${areaTxt.text} ,${specialTxt.text} ,";
-    //   } else {
-    //     showAlertDialog2(context, 'Stop', 'Fill all address info');
-    //   }
-    // } else {
-    //   if (theAddress.isEmpty) {
-    //     showAlertDialog2(context, 'Stop', 'Fill all address info');
-    //   }
-    // }
-    // productServices.saveUserAddress(context: context, address: theAddress);
-    // productServices.setAnOrder(
-    //   context: context,
-    //   address: theAddress,
-    //   totalPrice: double.parse(widget.totalAmount),
-    //   paymentMethod: paymentMethod,
-    // );
+    if (formOk) {
+      if (_addressFormScreen.currentState!.validate()) {
+        theAddress =
+            " ${addressTxt.text} , ${homeTxt.text} , ${areaTxt.text} ,${specialTxt.text} ,";
+      } else {
+        showAlertDialog2(context, 'Stop', 'Fill all address info');
+      }
+    } else {
+      if (theAddress.isEmpty) {
+        showAlertDialog2(context, 'Stop', 'Fill all address info');
+      }
+    }
+    productServices.saveUserAddress(context: context, address: theAddress);
+    productServices.setAnOrder(
+      context: context,
+      address: theAddress,
+      totalPrice: double.parse(widget.totalAmount),
+      paymentMethod: paymentMethod,
+    );
   }
 
   @override
@@ -172,27 +171,26 @@ class _AddressScreenState extends State<AddressScreen> {
                       icon: Icons.mark_as_unread_outlined,
                     ),
                     const SizedBox(height: 10),
-                    // _paymentConfiguration == null
-                    //     ? const CircularProgressIndicator() // لسه بيحمل
-                    //     : GooglePayButton(
-                    //         paymentConfiguration:
-                    //             _paymentConfiguration, // ✅ هنا
-                    //         paymentItems: _paymentItems,
-                    //         onPaymentResult: _handlePaymentResult,
-                    //       ),
-                    // GooglePayButton(
-                    //   paymentConfiguration: _paymentConfiguration, // ✅ هنا
-                    //   paymentItems: _paymentItems,
-                    //   onPaymentResult: _handlePaymentResult,
-                    // ),
-                    // const SizedBox(height: 10),
-                    // CustomButton(
-                    //   onTap: () {
-                    //     payPressed(address, "CASH");
-                    //   },
-                    //   text: 'Cash on delivery',
-                    //   icon: Icons.attach_money,
-                    // ),
+                    _paymentConfiguration == null
+                        ? const CircularProgressIndicator() // لسه بيحمل
+                        : GooglePayButton(
+                          paymentConfiguration: _paymentConfiguration, // ✅ هنا
+                          paymentItems: _paymentItems,
+                          onPaymentResult: _handlePaymentResult,
+                        ),
+                    GooglePayButton(
+                      paymentConfiguration: _paymentConfiguration, // ✅ هنا
+                      paymentItems: _paymentItems,
+                      onPaymentResult: _handlePaymentResult,
+                    ),
+                    const SizedBox(height: 10),
+                    CustomButton(
+                      onTap: () {
+                        payPressed(address, "CASH");
+                      },
+                      text: 'Cash on delivery',
+                      icon: Icons.attach_money,
+                    ),
                   ],
                 ),
               ),

@@ -18,6 +18,12 @@ abstract class ApiKey {
   static const String deelOfTheDay = '$httpCinfig/api/deal-of-the-day';
   static const String addToCart = '$httpCinfig/api/add-to-cart';
   static const String removeFromCart = '$httpCinfig/api/remove-to-cart';
+  static const String saveUserAddress = '$httpCinfig/api/save-user-address';
+  static const String setOrder = '$httpCinfig/api/order';
+  static const String myOrders = '$httpCinfig/api/my-orders';
+  static const String getAllProducts = '$httpCinfig/api/all-orders-admin';
+  static const String updateOrderStatus =
+      '$httpCinfig/admin/update-order-status';
 }
 
 class Declarations {

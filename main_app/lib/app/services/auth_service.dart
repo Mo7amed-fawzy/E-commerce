@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:e_commerce_app/app/models/user.dart';
+import 'package:e_commerce_app/app/screens/auth_screen.dart';
 import 'package:e_commerce_app/app/screens/home_screen.dart';
 import 'package:e_commerce_app/components/declarations.dart';
 import 'package:e_commerce_app/components/error.handling.dart';
@@ -207,6 +208,21 @@ class AuthService {
           msg: 'Ex in getUserData ${e.toString()}',
         );
       }
+    }
+  }
+
+  void logOut(BuildContext context) async {
+    try {
+      SharedPreferences preferences = await SharedPreferences.getInstance();
+      await preferences.setString('my-Souq-auth-token', '');
+    } catch (e) {
+      MyDialogs.error(context: context, msg: 'Ex in logOut ${e.toString()}');
+
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        AuthScreen.routName,
+        (route) => false,
+      );
     }
   }
 }

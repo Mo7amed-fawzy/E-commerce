@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/app/screens/admin_orders_screen.dart';
+import 'package:e_commerce_app/app/screens/analytics_screen.dart';
 import 'package:e_commerce_app/app/screens/posts_screen.dart';
 import 'package:e_commerce_app/components/declarations.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,7 @@ class _AdminScreenState extends State<AdminScreen> {
 
   List<Widget> pages = [
     const PostsScreen(),
-    // const AnalyticsScreen(),
+    const AnalyticsScreen(),
     const AdminOrdersScreen(),
   ];
 

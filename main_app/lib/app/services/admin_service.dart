@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:cloudinary_public/cloudinary_public.dart';
 import 'package:e_commerce_app/app/models/order.dart';
 import 'package:e_commerce_app/app/models/product.dart';
+import 'package:e_commerce_app/app/models/sales.dart';
 import 'package:e_commerce_app/components/declarations.dart';
 import 'package:e_commerce_app/components/error.handling.dart';
 import 'package:e_commerce_app/components/utils.dart';
@@ -196,5 +197,71 @@ class AdminService {
         msg: 'Ex in deleteProduct ${e.toString()}',
       );
     }
+  }
+
+  Future<Map<String, dynamic>> getTotalSales(BuildContext context) async {
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    List<Sales> sales = [];
+    double totalSales = 0;
+    double totalOrders = 0;
+    double totalProducts = 0;
+    try {
+      http.Response res = await http.get(
+        Uri.parse(ApiKey.getAdminAnalytics),
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+          'my-souq-auth-token': userProvider.user.token,
+        },
+      );
+
+      httpErrorHandling(
+        response: res,
+        context: context,
+        onSuccess: () {
+          var result = jsonDecode(res.body);
+          totalSales = Declarations.checkdouble(result['totalSales'] ?? 0.0);
+          totalOrders = Declarations.checkdouble(result['totalOrders'] ?? 0.0);
+          totalProducts = Declarations.checkdouble(
+            result['totalProducts'] ?? 0.0,
+          );
+          sales = [
+            Sales(
+              label: 'Mobiles',
+              totalSale: Declarations.checkdouble(result['catMobiles'] ?? 0.0),
+            ),
+            Sales(
+              label: 'Appliances',
+              totalSale: Declarations.checkdouble(
+                result['catAppliances'] ?? 0.0,
+              ),
+            ),
+            Sales(
+              label: 'Fashion',
+              totalSale: Declarations.checkdouble(result['catFashion'] ?? 0.0),
+            ),
+            Sales(
+              label: 'Essentials',
+              totalSale: Declarations.checkdouble(
+                result['catEssentials'] ?? 0.0,
+              ),
+            ),
+            Sales(
+              label: 'Computers',
+              totalSale: Declarations.checkdouble(
+                result['catComputers'] ?? 0.0,
+              ),
+            ),
+          ];
+        },
+      );
+    } catch (e) {
+      showSnackBar(context, e.toString());
+    }
+    return {
+      'sales': sales,
+      'totalSales': totalSales,
+      'totalOrders': totalOrders,
+      'totalProducts': totalProducts,
+    };
   }
 }

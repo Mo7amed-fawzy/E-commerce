@@ -24,6 +24,7 @@ abstract class ApiKey {
   static const String getAllProducts = '$httpCinfig/api/all-orders-admin';
   static const String updateOrderStatus =
       '$httpCinfig/admin/update-order-status';
+  static const String getAdminAnalytics = '$httpCinfig/admin/analytics';
 }
 
 class Declarations {
@@ -65,13 +66,13 @@ class Declarations {
     'https://eg.jumia.is/cms/ja-22/games/2.gif',
   ];
 
-  // static double checkdouble(dynamic value) {
-  //   if (value is int) {
-  //     return value.toDouble();
-  //   } else if (value is String) {
-  //     return double.parse(value);
-  //   } else {
-  //     return value;
-  //   }
-  // }
+  static double checkdouble(dynamic value) {
+    if (value is int) {
+      return value.toDouble();
+    } else if (value is String) {
+      return double.parse(value);
+    } else {
+      return value;
+    }
+  }
 }

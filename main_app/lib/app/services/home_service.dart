@@ -50,6 +50,41 @@ class HomeService {
     return productList;
   }
 
+  Future<List<Product>> searchForProducts({
+    required BuildContext context,
+    required String txt,
+  }) async {
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    List<Product> productsList = [];
+    try {
+      http.Response res = await http.get(
+        Uri.parse(ApiKey.search + txt),
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+          'my-souq-auth-token': userProvider.user.token,
+        },
+      );
+
+      httpErrorHandling(
+        response: res,
+        context: context,
+        onSuccess: () {
+          for (int i = 0; i < jsonDecode(res.body).length; i++) {
+            productsList.add(
+              Product.fromJson(jsonEncode(jsonDecode(res.body)[i])),
+            );
+          }
+        },
+      );
+    } catch (e) {
+      MyDialogs.error(
+        context: context,
+        msg: 'Ex in searchForProducts ${e.toString()} ',
+      );
+    }
+    return productsList;
+  }
+
   Future<List<Product>> dealOfProducts({required BuildContext context}) async {
     final provider = Provider.of<UserProvider>(context, listen: false);
     List<Product> productList = [];

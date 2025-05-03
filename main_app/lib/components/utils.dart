@@ -5,15 +5,15 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 // buildcontext to make it understand to access the main thread of the screen and build on the its context
-void showSnackBar(BuildContext context, String text) {
-  ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(
-      content: Text(text),
-      duration: const Duration(seconds: 2),
-      backgroundColor: Colors.red,
-    ),
-  );
-}
+// void showSnackBar(BuildContext context, String text) {
+//   ScaffoldMessenger.of(context).showSnackBar(
+//     SnackBar(
+//       content: Text(text),
+//       duration: const Duration(seconds: 2),
+//       backgroundColor: Colors.red,
+//     ),
+//   );
+// }
 
 Future<List<File>> pickImages() async {
   List<File> images = [];
@@ -69,11 +69,9 @@ String uriMethods(String uriType) {
     return 'mongodb://localhost:27017/MyData/GroupChat';
   } else if (uriType == 'httpCinfig') {
     return 'http://192.168.1.3:8080';
-  }
-  //  else if (uriType == ''mongooConfig) {
-  //   return 'mongodb://192.168.1.3:8080/';
-  // }
-  else {
+  } else if (uriType == 'mongooConfig') {
+    return 'mongodb://192.168.1.3:8080/';
+  } else {
     throw Exception('Unknown URI type: $uriType');
   }
 }
@@ -155,23 +153,24 @@ abstract class MyDialogs {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       elevation: 6.0,
 
-      // action: SnackBarAction(
-      //   label: 'OK',
-      //   textColor: Colors.white,
-      //   onPressed: () {
-      //     // Some action when the button is pressed
-      //   },
-      // ),
-      // action: null, // Remove the action button if not needed
-      animation: CurvedAnimation(
-        parent: AnimationController(
-          vsync: scaffold,
-          duration: Duration(milliseconds: 100),
-          // reverseDuration: Duration(milliseconds: 100),
-          // animationBehavior: AnimationBehavior.values[2], ضربلي ايرور فعدد الحروف
-        ),
-        curve: Curves.easeInOut,
+      action: SnackBarAction(
+        label: 'OK',
+        textColor: Colors.white,
+        onPressed: () {
+          // Some action when the button is pressed
+        },
       ),
+      // action: null, // Remove the action button if not needed
+      // animation: CurvedAnimation(
+      //   parent: AnimationController(
+      //     vsync: scaffold,
+      //     duration: Duration(milliseconds: 100),
+      //     reverseDuration: Duration(milliseconds: 100),
+      //     animationBehavior:
+      //         AnimationBehavior.values[0], // ضربلي ايرور فعدد الحروف
+      //   ),
+      //   curve: Curves.easeInOut,
+      // ),
     );
 
     // Show the Snackbar
@@ -179,11 +178,11 @@ abstract class MyDialogs {
   }
 }
 
-// void withMounted(BuildContext context, Function action) {
-//   if (context.mounted) {
-//     action();
-//   }
-// }
+void withMounted(BuildContext context, Function action) {
+  if (context.mounted) {
+    action();
+  }
+}
 
 printHere(var obj) {
   if (kDebugMode) {

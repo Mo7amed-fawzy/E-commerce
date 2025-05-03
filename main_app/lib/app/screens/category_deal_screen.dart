@@ -1,11 +1,8 @@
 import 'package:e_commerce_app/app/models/product.dart';
 import 'package:e_commerce_app/app/services/home_service.dart';
-// import 'package:e_commerce_app/app/widgets/loader.dart';
 import 'package:e_commerce_app/components/declarations.dart';
 import 'package:e_commerce_app/widgets/loader.dart';
 import 'package:flutter/material.dart';
-
-// import '../widgets/product_card.dart';
 
 class CategoryDealScreen extends StatefulWidget {
   const CategoryDealScreen({super.key, required this.category});

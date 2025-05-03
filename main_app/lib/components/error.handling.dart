@@ -44,7 +44,10 @@ void httpErrorHandling({
       );
       break;
     default:
-      showSnackBar(context, 'Unknown error: ${response.body}');
+      MyDialogs.error(
+        context: context,
+        msg: 'Unknown error: ${response.body}}',
+      );
       break;
   }
 }

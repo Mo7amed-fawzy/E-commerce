@@ -60,7 +60,14 @@ class Product {
       price: json['price']?.toDouble() ?? 0.00,
       qty: json['qty']?.toDouble() ?? 0.00,
       category: json['category'] ?? '',
-      images: List<String>.from(json['images']),
+
+      images:
+          json['images'] != null && json['images'] is List
+              ? List<String>.from(json['images'])
+              : [
+                'https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ=',
+              ],
+
       id: json['_id'] ?? '',
       userId: json['userId'] ?? '',
       rating:
@@ -68,6 +75,11 @@ class Product {
               ? List<Rating>.from(json['rating']?.map((x) => Rating.fromMap(x)))
               : null,
     );
+  }
+  String get firstImage {
+    return images.isNotEmpty
+        ? images[0]
+        : 'https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ=';
   }
 
   String toJson() => json.encode(toMap());

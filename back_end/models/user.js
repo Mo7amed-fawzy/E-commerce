@@ -24,7 +24,7 @@ const userSchema = mongoose.Schema({
         type: String,
     },
     address: {
-        defult: '',
+        default: '',
         type: String,
         trim: true
     },
@@ -41,11 +41,6 @@ const userSchema = mongoose.Schema({
             }
         }
     ]
-
-    // cart: {
-    //     type: Array,
-    //     default: [],
-    // },
     // wishlist: {
     //     type: Array,
     //     default: [],

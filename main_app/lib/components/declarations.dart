@@ -14,6 +14,7 @@ abstract class ApiKey {
   static const String adminGetProducts = '$httpCinfig/admin/get-products';
   static const String adminDeletProducts = '$httpCinfig/admin/delete-products';
   static const String getProducts = '$httpCinfig/api/get-products';
+  static const String search = '$httpCinfig/api/get-products/search/';
   static const String rateProduct = '$httpCinfig/api/rate-product';
   static const String deelOfTheDay = '$httpCinfig/api/deal-of-the-day';
   static const String addToCart = '$httpCinfig/api/add-to-cart';

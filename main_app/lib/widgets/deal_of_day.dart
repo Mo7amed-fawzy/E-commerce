@@ -5,8 +5,7 @@ import 'package:e_commerce_app/widgets/loader.dart';
 import 'package:e_commerce_app/widgets/product_card_horizontal.dart';
 import 'package:flutter/material.dart';
 
-// import 'package:flutter_localizations/flutter_localizations.dart';
-// import 'package:e_commerce_app/l10n/app_localizations.dart'; // تأكد من أنه يتوافق مع مكان تخزين ملف الترجمة لديك
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DealOfDay extends StatefulWidget {
   const DealOfDay({super.key});
@@ -27,24 +26,26 @@ class _DealOfDayState extends State<DealOfDay> {
 
   fetchCategories() async {
     productList = await homeService.dealOfProducts(context: context);
-    setState(() {});
+    if (mounted) {
+      setState(() {});
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // Container(
-        //   alignment:
-        //       AppLocalizations.of(context)!.localeName == 'ar'
-        //           ? Alignment.topRight
-        //           : Alignment.topLeft,
-        //   padding: const EdgeInsets.only(left: 10, top: 15),
-        //   child: Text(
-        //     AppLocalizations.of(context)!.dealOfTheDay,
-        //     style: const TextStyle(fontSize: 20),
-        //   ),
-        // ),
+        Container(
+          alignment:
+              AppLocalizations.of(context)!.localeName == 'ar'
+                  ? Alignment.topRight
+                  : Alignment.topLeft,
+          padding: const EdgeInsets.only(left: 10, top: 15),
+          child: Text(
+            AppLocalizations.of(context)!.dealOfTheDay,
+            style: const TextStyle(fontSize: 20),
+          ),
+        ),
         SizedBox(
           height: 500,
           width: double.infinity,

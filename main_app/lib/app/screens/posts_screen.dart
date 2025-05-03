@@ -3,9 +3,6 @@ import 'package:e_commerce_app/app/screens/add_products.dart';
 import 'package:e_commerce_app/app/services/admin_service.dart';
 import 'package:e_commerce_app/components/utils.dart';
 import 'package:e_commerce_app/widgets/loader.dart';
-// import 'package:e_commerce_app/app/widgets/loader.dart';
-// import 'package:e_commerce_app/app/widgets/single_product.dart';
-// import 'package:e_commerce_app/components/utils.dart';
 import 'package:e_commerce_app/widgets/single_product.dart';
 import 'package:flutter/material.dart';
 

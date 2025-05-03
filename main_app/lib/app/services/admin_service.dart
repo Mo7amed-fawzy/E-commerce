@@ -255,7 +255,10 @@ class AdminService {
         },
       );
     } catch (e) {
-      showSnackBar(context, e.toString());
+      MyDialogs.error(
+        context: context,
+        msg: 'Ex in getTotalSales ${e.toString()} ',
+      );
     }
     return {
       'sales': sales,

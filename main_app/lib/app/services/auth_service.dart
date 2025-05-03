@@ -23,53 +23,35 @@ class AuthService {
       User user = User.getNewEmptyUser();
       final http.Response res = await http.post(
         Uri.parse(ApiKey.signUpUrl),
-
-        // result of middleware
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
         body: user.toJson(),
       );
-      if (context.mounted) {
-        httpErrorHandling(
-          response: res,
-          context: context,
-          onSuccess: () {
-            MyDialogs.success(
-              context: context,
-              msg: 'Account created successfully ',
-            );
-            // showSnackBar(context, 'Account created successfully');
-            // Navigator.pushNamedAndRemoveUntil(
-            //   context,
-            //   HomeScreen.routeName,
-            //   (route) => false,
-            // );
-          },
-        );
-      }
 
-      //   jsonEncode(<String, String>{
-      //     'email': email,
-      //     'password': password,
-      //     'name': name,
-      //   }),
-      // );
-      // if (res.statusCode == 200) {
-      //   return User.fromJson(res.body);
-      // } else {
-      //   // If the server did not return a 201 CREATED response,
-      //   // then throw an exception.
-      //   throw Exception('Failed to sign up user');
-      // }
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        withMounted(context, () {
+          httpErrorHandling(
+            response: res,
+            context: context,
+            onSuccess: () {
+              MyDialogs.success(
+                context: context,
+                msg: 'Account created successfully',
+              );
+            },
+          );
+        });
+      });
     } catch (e) {
-      if (context.mounted) {
-        // showSnackBar(context, e.toString());
-        MyDialogs.error(
-          context: context,
-          msg: 'Ex in signUpUser ${e.toString()}',
-        );
-      }
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        withMounted(context, () {
+          MyDialogs.error(
+            context: context,
+            msg: 'Ex in signUpUser ${e.toString()}',
+          );
+        });
+      });
     }
   }
 
@@ -90,7 +72,7 @@ class AuthService {
           'password': password,
         }),
       );
-      if (context.mounted) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
         httpErrorHandling(
           response: res,
           context: context,
@@ -98,12 +80,12 @@ class AuthService {
             SharedPreferences shredPreferences =
                 await SharedPreferences.getInstance();
 
-            if (context.mounted) {
+            WidgetsBinding.instance.addPostFrameCallback((_) {
               Provider.of<UserProvider>(
                 context,
                 listen: false,
               ).setUserFromModel(res.body);
-            }
+            });
 
             await shredPreferences.setString(
               "my-Souq-auth-token",
@@ -119,7 +101,7 @@ class AuthService {
             //   Declerations.userName,
             //   jsonDecode(res.body)['user']['name'],
             // );
-            if (context.mounted) {
+            WidgetsBinding.instance.addPostFrameCallback((_) {
               MyDialogs.success(
                 context: context,
                 msg: 'Successfully logged in',
@@ -130,19 +112,19 @@ class AuthService {
                 HomeScreen.routeName,
                 (route) => false,
               );
-            }
+            });
           },
         );
-      }
+      });
     } catch (e) {
-      if (context.mounted) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
         // showSnackBar(context, e.toString());
         MyDialogs.error(
           context: context,
 
           msg: 'Ex in signInUser ${e.toString()}',
         );
-      }
+      });
     }
   }
 
@@ -173,7 +155,7 @@ class AuthService {
             'my-Souq-auth-token': token,
           },
         );
-        if (context.mounted) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
           var userProvider = Provider.of<UserProvider>(context, listen: false);
           userProvider.setUserFromModel(userRes.body);
           // Navigator.pushNamedAndRemoveUntil(
@@ -181,8 +163,7 @@ class AuthService {
           //   HomeScreen.routeName,
           //   (route) => false,
           // );
-        }
-
+        });
         // } else {
         //   shredPreferences.setString("my-Souq-auth-token", '');
         // }
@@ -200,12 +181,12 @@ class AuthService {
         // }
       }
     } catch (e) {
-      if (context.mounted) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
         MyDialogs.error(
           context: context,
           msg: 'Ex in getUserData ${e.toString()}',
         );
-      }
+      });
     }
   }
 
@@ -214,13 +195,14 @@ class AuthService {
       SharedPreferences preferences = await SharedPreferences.getInstance();
       await preferences.setString('my-Souq-auth-token', '');
     } catch (e) {
-      MyDialogs.error(context: context, msg: 'Ex in logOut ${e.toString()}');
-
-      Navigator.pushNamedAndRemoveUntil(
-        context,
-        AuthScreen.routName,
-        (route) => false,
-      );
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        MyDialogs.error(context: context, msg: 'Ex in logOut ${e.toString()}');
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          AuthScreen.routName,
+          (route) => false,
+        );
+      });
     }
   }
 }

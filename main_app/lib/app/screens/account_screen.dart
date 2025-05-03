@@ -1,4 +1,7 @@
 import 'package:e_commerce_app/components/declarations.dart';
+import 'package:e_commerce_app/widgets/below_app_bar.dart';
+import 'package:e_commerce_app/widgets/orders.dart';
+import 'package:e_commerce_app/widgets/top_buttons.dart';
 import 'package:flutter/material.dart';
 
 class AccountScreen extends StatelessWidget {
@@ -44,15 +47,11 @@ class AccountScreen extends StatelessWidget {
       ),
       body: const Column(
         children: [
-          // BelowAppBar(),
-          // SizedBox(
-          //   height: 10,
-          // ),
-          // TopButtons(),
-          // SizedBox(
-          //   height: 10,
-          // ),
-          // Orders(),
+          BelowAppBar(),
+          SizedBox(height: 10),
+          TopButtons(),
+          SizedBox(height: 10),
+          Orders(),
         ],
       ),
     );

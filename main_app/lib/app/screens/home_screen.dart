@@ -7,6 +7,9 @@ import 'package:e_commerce_app/widgets/deal_of_day.dart';
 import 'package:e_commerce_app/widgets/top_categories.dart';
 import 'package:flutter/material.dart';
 
+import '../models/language.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -105,9 +108,9 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      body: const SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Column(
-          children: [
+          children: const [
             AddressBar(),
             SizedBox(height: 10),
             TopCategories(),

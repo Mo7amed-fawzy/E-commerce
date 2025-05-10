@@ -25,8 +25,16 @@ void httpErrorHandling({
       // );
       MyDialogs.info(
         context: context,
-        msg: 'Response 400 is ${jsonDecode(response.body)['msg2']}',
+        msg: 'Response 400 is ${jsonDecode(response.body)['msg']}',
       );
+      // PremiumToastHelper.show(
+      //   backgroundColor: Colors.amber,
+      //   position: ToastPosition.center,
+      //   textColor: Colors.white,
+      //   type: ToastType.info,
+      //   message: 'Response 400 is ${jsonDecode(response.body)['msg']}',
+      //   borderRadius: 12,
+      // );
       break;
     case 401:
       throw Exception('Unauthorized: ${response.body}');

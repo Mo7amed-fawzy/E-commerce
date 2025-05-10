@@ -140,6 +140,7 @@ abstract class MyDialogs {
     required String msg,
     required Color backgroundColor,
   }) {
+    if (!context.mounted) return; // Dart 3.1 وما فوق
     final scaffold = ScaffoldMessenger.of(context);
 
     // Define the snackbar
@@ -210,48 +211,4 @@ showAlertDialog2(BuildContext context, String txtHead, String txtMsg) {
       return alertDialog;
     },
   );
-}
-
-String getStatus(int value) {
-  switch (value) {
-    case 0:
-      return "preparing";
-    case 1:
-      return "Preparing";
-    case 2:
-      return "Ready";
-    case 3:
-      return "On Way";
-    case 4:
-      return "Completed";
-    default:
-      return "preparing";
-  }
-}
-
-Color? getStatusColor(int value) {
-  switch (value) {
-    case 0:
-      return Colors.green;
-    case 1:
-      return Colors.blue;
-    case 2:
-      return Colors.yellowAccent;
-    case 3:
-      return Colors.deepOrange;
-    case 4:
-      return Colors.red;
-    default:
-      return Colors.green;
-  }
-}
-
-double getProportionateScreenHeight(double inputHeight, BuildContext context) {
-  double screenHeight = MediaQuery.of(context).size.height;
-  return (inputHeight / 812.0) * screenHeight;
-}
-
-double getProportionateScreenWidth(double inputWidth, BuildContext context) {
-  double screenWidth = MediaQuery.of(context).size.width;
-  return (inputWidth / 375.0) * screenWidth;
 }

@@ -1,3 +1,7 @@
 .vscode/
 back_end/mongo_pass.txt/
 back_end/node_modules/
+main_app/lib/my_premium_collection/premium_refresh_indicator.dart
+main_app/lib/my_premium_collection/premium_drop_down_menu.dart
+main_app/lib/my_premium_collection/premium_snackbar.dart
+main_app/lib/my_premium_collection/premium_loading_indicator.dart

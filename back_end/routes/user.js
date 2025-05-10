@@ -10,39 +10,38 @@ userRouter.post('/api/add-to-cart', auth, async (req, res) => {
         const { id, qty } = req.body;
         const product = await Product.findById(id);
         let user = await User.findById(req.user);
-        if (user.cart.lengh == 0) {
+
+        if (!user.cart || user.cart.length === 0) {
             const cartSchema = {
                 product,
                 qty: Number(qty)
-            }
-            User.cart.push(cartSchema);
-            // user = await User.save();
+            };
+            user.cart = [cartSchema];
         } else {
             let isFound = false;
-            for (let i = 0; i < User.cart.length; i++) {
-                if (user.cart[i].product._id.equals(product._id))
-                // this is object id (product's id)
-                {
+            for (let i = 0; i < user.cart.length; i++) {
+                if (user.cart[i].product._id.equals(product._id)) {
                     user.cart[i].qty += Number(qty);
                     isFound = true;
                     break;
                 }
-                // if (isFound) break
             }
             if (!isFound) {
                 const cartSchema = {
                     product,
                     qty: Number(qty)
-                }
-                User.cart.push(cartSchema);
+                };
+                user.cart.push(cartSchema);
             }
         }
-        user = await User.save();
+
+        user = await user.save();
         res.json(user);
     } catch (e) {
-        res.status(500).json({ error: e.message || ' Internal server error' });
+        res.status(500).json({ error: e.message || 'Internal server error' });
     }
 });
+
 
 userRouter.delete('/api/remove-to-cart/:id', auth, async (req, res) => {
     try {
@@ -124,6 +123,24 @@ userRouter.get('/api/my-orders', auth, async (req, res) => {
         res.json(orders);
     } catch (e) {
         res.status(500).json({ error: e.message });
+    }
+});
+
+userRouter.get('/api/get-user-info', auth, async (req, res) => {
+    try {
+        const user = await User.findById(req.user).populate('cart.product');
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        res.json({
+            name: user.name,
+            email: user.email,
+            address: user.address,
+            cart: user.cart,
+            type: user.type,
+        });
+    } catch (e) {
+        res.status(500).json({ error: e.message || 'Internal server error' });
     }
 });
 

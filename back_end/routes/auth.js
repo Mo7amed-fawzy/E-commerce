@@ -8,24 +8,39 @@ const authRouter = express.Router();
 
 authRouter.post('/api/signup', async (req, res) => {
    try {
-      const { name, email, password, type } = req.body; // <-- أضف type هنا
+      const { name, email, password, type } = req.body;
 
-      const exisitingUser = await User.findOne({ email });
-      if (exisitingUser) {
-         return res.status(400).json({ msg: "Email is already there" });
+      // التحقق اليدوي
+      if (!name || !email || !password) {
+         return res.status(400).json({ msg: "Please provide name, email, and password." });
+      }
+
+      // تحقق من صحة البريد
+      const emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\\.,;:\s@\"]+\.)+[^<>()[\]\\.,;:\s@\"]{2,})$/i;
+      if (!emailRegex.test(email)) {
+         return res.status(400).json({ msg: "Invalid email format." });
+      }
+
+      // تحقق من الطول الأدنى للباسورد
+      if (password.length < 6) {
+         return res.status(400).json({ msg: "Password must be at least 6 characters." });
+      }
+
+      const existingUser = await User.findOne({ email });
+      if (existingUser) {
+         return res.status(400).json({ msg: "Email already exists." });
       }
 
       const hPassword = await bcrypt.hash(password, 8);
-
-      // أضف type هنا، هيتخزن لو موجود، ولو مش موجود هياخد default
-      let user = new User({ email, password: hPassword, name, type });
-
+      let user = new User({ name, email, password: hPassword, type });
       user = await user.save();
+
       res.json(user);
    } catch (e) {
-      res.status(500).json({ msg: 'User dea' });
+      res.status(500).json({ msg: "Internal server error." });
    }
 });
+
 
 
 authRouter.post('/api/signin', async (req, res) => {

@@ -1,15 +1,16 @@
-import 'package:e_commerce_app/app/models/order.dart';
-import 'package:e_commerce_app/app/models/product.dart';
-import 'package:e_commerce_app/app/screens/add_products.dart';
-import 'package:e_commerce_app/app/screens/address_screen.dart';
-import 'package:e_commerce_app/app/screens/admin_screen.dart';
-import 'package:e_commerce_app/app/screens/auth_screen.dart';
-import 'package:e_commerce_app/app/screens/category_deal_screen.dart';
-import 'package:e_commerce_app/app/screens/home_screen.dart';
-import 'package:e_commerce_app/app/screens/order_details_screen.dart';
-import 'package:e_commerce_app/app/screens/product_details_screen.dart';
-import 'package:e_commerce_app/app/screens/search_screen.dart';
-import 'package:e_commerce_app/widgets/custom_bottom_bar.dart';
+import 'package:e_commerce_app/core/models/order.dart';
+import 'package:e_commerce_app/core/models/product.dart';
+import 'package:e_commerce_app/features/admin/presentation/add_products.dart';
+import 'package:e_commerce_app/features/client/presentation/screens/account/profile_screen.dart';
+import 'package:e_commerce_app/features/client/presentation/screens/orders/address_screen.dart';
+import 'package:e_commerce_app/features/admin/presentation/admin_screen.dart';
+import 'package:e_commerce_app/features/client/presentation/screens/auth/auth_screen.dart';
+import 'package:e_commerce_app/features/client/presentation/screens/category/category_deal_screen.dart';
+import 'package:e_commerce_app/features/client/presentation/screens/home/home_screen.dart';
+import 'package:e_commerce_app/features/client/presentation/screens/orders/order_details_screen.dart';
+import 'package:e_commerce_app/features/client/presentation/screens/product/product_details_screen.dart';
+import 'package:e_commerce_app/features/client/presentation/screens/search/search_screen.dart';
+import 'package:e_commerce_app/features/client/presentation/screens/home/custom_bottom_bar.dart';
 import 'package:flutter/material.dart';
 
 Route<dynamic> generateRoute(RouteSettings routeSettings) {
@@ -18,6 +19,11 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
       return MaterialPageRoute(
         settings: routeSettings,
         builder: (_) => const AuthScreen(),
+      );
+    case ProfileScreen.routeName:
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => const ProfileScreen(),
       );
     case HomeScreen.routeName:
       return MaterialPageRoute(

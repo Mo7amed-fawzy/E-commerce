@@ -49,6 +49,27 @@ class CarouselImageState extends State<CarouselImage> {
                             fit: BoxFit.cover,
                             height: 180, // Reduced height
                             width: double.infinity,
+                            loadingBuilder: (
+                              BuildContext context,
+                              Widget child,
+                              ImageChunkEvent? loadingProgress,
+                            ) {
+                              if (loadingProgress == null) {
+                                return child; // الصورة اتحملت خلاص
+                              }
+                              return Center(
+                                child: CircularProgressIndicator(
+                                  value:
+                                      loadingProgress.expectedTotalBytes != null
+                                          ? loadingProgress
+                                                  .cumulativeBytesLoaded /
+                                              (loadingProgress
+                                                      .expectedTotalBytes ??
+                                                  1)
+                                          : null,
+                                ),
+                              );
+                            },
                           ),
                         ),
                       ),

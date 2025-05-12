@@ -218,7 +218,7 @@ class AuthService {
     }
   }
 
-  Future<bool> getUserDataInfo(BuildContext context) async {
+  Future<bool> getUserProf(BuildContext context) async {
     SharedPreferences shredPreferences = await SharedPreferences.getInstance();
     String? token = shredPreferences.getString("my-Souq-auth-token");
     if (token == null || token.isEmpty) {

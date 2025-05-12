@@ -1,12 +1,15 @@
+import 'package:e_commerce_app/core/databases/local/favorite_color.dart';
+import 'package:e_commerce_app/core/databases/local/theme_mode.dart';
+import 'package:e_commerce_app/core/theme/app_theme.dart';
 import 'package:e_commerce_app/features/client/presentation/screens/start/start_screen.dart';
 import 'package:e_commerce_app/core/services/auth_service.dart';
-import 'package:e_commerce_app/components/declarations.dart';
 import 'package:e_commerce_app/core/providers/user_provider.dart';
 import 'package:e_commerce_app/router.dart';
 import 'package:e_commerce_app/features/client/presentation/screens/home/custom_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_bloc/flutter_bloc.dart'; // مهم
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -40,26 +43,27 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'My Souq',
-      theme: ThemeData(
-        scaffoldBackgroundColor: Declarations.backgroundColor,
-        colorScheme: const ColorScheme.light(
-          primary: Declarations.secondaryColor,
-        ),
-        appBarTheme: const AppBarTheme(
-          elevation: 0,
-          iconTheme: IconThemeData(color: Colors.black),
-        ),
-      ),
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
-      locale: _locale,
-      onGenerateRoute: (settings) => generateRoute(settings),
-      home:
-          Provider.of<UserProvider>(context).user.token.isNotEmpty
-              ? const BottomBar()
-              : const StartScreen(),
+    return Builder(
+      builder: (context) {
+        final provider = Provider.of<UserProvider>(context);
+        final primaryColor = context.watch<PrimaryColorCubit>().state;
+        final themeMode = context.watch<ThemeCubit>().state;
+
+        return MaterialApp(
+          title: 'My Souq',
+          theme: getLightTheme(primaryColor),
+          darkTheme: getDarkTheme(primaryColor),
+          themeMode: themeMode,
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          locale: _locale,
+          onGenerateRoute: (settings) => generateRoute(settings),
+          home:
+              provider.user.token.isNotEmpty
+                  ? const BottomBar()
+                  : const StartScreen(),
+        );
+      },
     );
   }
 }

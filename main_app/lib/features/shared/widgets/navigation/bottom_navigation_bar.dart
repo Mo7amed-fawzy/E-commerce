@@ -4,11 +4,11 @@ import 'package:badges/badges.dart' as custom_badge;
 import 'package:e_commerce_app/features/shared/widgets/navigation/bottom_curved_painter.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../../../../core/providers/user_provider.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
   final Function(int) onIconPresedCallback;
+
   const CustomBottomNavigationBar({
     super.key,
     required this.onIconPresedCallback,
@@ -25,6 +25,7 @@ class CustomBottomNavigationBarState extends State<CustomBottomNavigationBar>
 
   late AnimationController _xController;
   late AnimationController _yController;
+
   @override
   void initState() {
     _xController = AnimationController(
@@ -50,7 +51,7 @@ class CustomBottomNavigationBarState extends State<CustomBottomNavigationBar>
   }
 
   double _indexToPosition(int index) {
-    const buttonCount = 4.0;
+    const buttonCount = 5.0;
     final appWidth = MediaQuery.of(context).size.width;
     final buttonsWidth = _getButtonContainerWidth();
     final startX = (appWidth - buttonsWidth) / 2;
@@ -73,12 +74,13 @@ class CustomBottomNavigationBarState extends State<CustomBottomNavigationBar>
     bool ifCart = false,
     int cartCount = 0,
   }) {
+    final theme = Theme.of(context);
+    final bottomBarTheme = theme.bottomNavigationBarTheme;
+
     return Expanded(
       child: InkWell(
         borderRadius: const BorderRadius.all(Radius.circular(50)),
-        onTap: () {
-          _handlePressed(index);
-        },
+        onTap: () => _handlePressed(index),
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 500),
           alignment: isEnable ? Alignment.topCenter : Alignment.center,
@@ -87,10 +89,16 @@ class CustomBottomNavigationBarState extends State<CustomBottomNavigationBar>
             duration: const Duration(milliseconds: 300),
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              color: isEnable ? Colors.orange : Colors.white,
-              boxShadow: <BoxShadow>[
+              color:
+                  isEnable
+                      ? bottomBarTheme.selectedItemColor ?? theme.primaryColor
+                      : bottomBarTheme.backgroundColor ?? theme.canvasColor,
+              boxShadow: [
                 BoxShadow(
-                  color: isEnable ? const Color(0xfffeece2) : Colors.white,
+                  color:
+                      isEnable
+                          ? theme.colorScheme.surface.withOpacity(0.1)
+                          : Colors.transparent,
                   blurRadius: 10,
                   spreadRadius: 5,
                   offset: const Offset(5, 5),
@@ -103,8 +111,13 @@ class CustomBottomNavigationBarState extends State<CustomBottomNavigationBar>
               child:
                   ifCart
                       ? custom_badge.Badge(
-                        // elevation: 0,
-                        badgeContent: Text(cartCount.toString()),
+                        badgeContent: Text(
+                          cartCount.toString(),
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 10,
+                          ),
+                        ),
                         badgeStyle: const custom_badge.BadgeStyle(
                           badgeColor: Colors.red,
                         ),
@@ -112,16 +125,20 @@ class CustomBottomNavigationBarState extends State<CustomBottomNavigationBar>
                           icon,
                           color:
                               isEnable
-                                  ? Colors.white
-                                  : Theme.of(context).iconTheme.color,
+                                  ? bottomBarTheme.selectedIconTheme?.color ??
+                                      Colors.white
+                                  : bottomBarTheme.unselectedItemColor ??
+                                      theme.iconTheme.color,
                         ),
                       )
                       : Icon(
                         icon,
                         color:
                             isEnable
-                                ? Colors.white
-                                : Theme.of(context).iconTheme.color,
+                                ? bottomBarTheme.selectedIconTheme?.color ??
+                                    Colors.white
+                                : bottomBarTheme.unselectedItemColor ??
+                                    theme.iconTheme.color,
                       ),
             ),
           ),
@@ -139,16 +156,15 @@ class CustomBottomNavigationBarState extends State<CustomBottomNavigationBar>
           begin: Curves.easeInExpo.transform(_yController.value),
           end: inCurve.transform(_yController.value),
         ).transform(_yController.velocity.sign * 0.5 + 0.5),
-        Theme.of(context).colorScheme.surface,
+        Theme.of(context).bottomNavigationBarTheme.backgroundColor ??
+            Theme.of(context).colorScheme.surface,
       ),
     );
   }
 
   double _getButtonContainerWidth() {
     double width = MediaQuery.of(context).size.width;
-    if (width > 400.0) {
-      width = 400.0;
-    }
+    if (width > 400.0) width = 400.0;
     return width;
   }
 
@@ -173,12 +189,12 @@ class CustomBottomNavigationBarState extends State<CustomBottomNavigationBar>
   @override
   Widget build(BuildContext context) {
     final cartCount = context.watch<UserProvider>().user.cart.length;
-
     final appSize = MediaQuery.of(context).size;
     const height = 60.0;
+
     return SizedBox(
       width: appSize.width,
-      height: 60,
+      height: height,
       child: Stack(
         children: [
           Positioned(
@@ -195,7 +211,7 @@ class CustomBottomNavigationBarState extends State<CustomBottomNavigationBar>
             height: height,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
+              children: [
                 _icon(Icons.home_outlined, _selectedIndex == 0, 0),
                 _icon(Icons.person_outline_outlined, _selectedIndex == 1, 1),
                 _icon(
@@ -205,7 +221,8 @@ class CustomBottomNavigationBarState extends State<CustomBottomNavigationBar>
                   cartCount: cartCount,
                   ifCart: true,
                 ),
-                _icon(Icons.info_outline, _selectedIndex == 3, 3),
+                _icon(Icons.account_circle_outlined, _selectedIndex == 3, 3),
+                _icon(Icons.settings_outlined, _selectedIndex == 4, 4),
               ],
             ),
           ),

@@ -2,6 +2,7 @@ import 'package:e_commerce_app/core/models/order.dart';
 import 'package:e_commerce_app/core/models/product.dart';
 import 'package:e_commerce_app/features/admin/presentation/add_products.dart';
 import 'package:e_commerce_app/features/client/presentation/screens/account/profile_screen.dart';
+import 'package:e_commerce_app/features/client/presentation/screens/home/settings.dart';
 import 'package:e_commerce_app/features/client/presentation/screens/orders/address_screen.dart';
 import 'package:e_commerce_app/features/admin/presentation/admin_screen.dart';
 import 'package:e_commerce_app/features/client/presentation/screens/auth/auth_screen.dart';
@@ -11,6 +12,7 @@ import 'package:e_commerce_app/features/client/presentation/screens/orders/order
 import 'package:e_commerce_app/features/client/presentation/screens/product/product_details_screen.dart';
 import 'package:e_commerce_app/features/client/presentation/screens/search/search_screen.dart';
 import 'package:e_commerce_app/features/client/presentation/screens/home/custom_bottom_bar.dart';
+import 'package:e_commerce_app/features/client/presentation/setting/change_password_screen.dart';
 import 'package:flutter/material.dart';
 
 Route<dynamic> generateRoute(RouteSettings routeSettings) {
@@ -24,6 +26,16 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
       return MaterialPageRoute(
         settings: routeSettings,
         builder: (_) => const ProfileScreen(),
+      );
+    case ChangePasswordScreen.routeName:
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => const ChangePasswordScreen(),
+      );
+    case SettingsScreen.routeName:
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => const SettingsScreen(),
       );
     case HomeScreen.routeName:
       return MaterialPageRoute(

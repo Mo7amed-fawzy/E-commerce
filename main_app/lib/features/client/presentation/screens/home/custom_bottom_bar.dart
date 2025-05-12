@@ -2,6 +2,7 @@ import 'package:e_commerce_app/features/client/presentation/screens/account/acco
 import 'package:e_commerce_app/features/client/presentation/screens/account/profile_screen.dart';
 import 'package:e_commerce_app/features/client/presentation/screens/cart/cart_screen.dart';
 import 'package:e_commerce_app/features/client/presentation/screens/home/home_screen.dart';
+import 'package:e_commerce_app/features/client/presentation/screens/home/settings.dart';
 import 'package:flutter/material.dart';
 import '../../../../shared/widgets/navigation/bottom_navigation_bar.dart';
 
@@ -23,6 +24,7 @@ class _BottomBarState extends State<BottomBar> {
     const AccountScreen(),
     const CartScreen(),
     const ProfileScreen(),
+    const SettingsScreen(),
   ];
 
   void updatePage(int page) {

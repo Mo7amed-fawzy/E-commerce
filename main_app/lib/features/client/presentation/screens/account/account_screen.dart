@@ -1,7 +1,7 @@
 import 'package:e_commerce_app/features/client/presentation/screens/search/search_screen.dart';
 import 'package:e_commerce_app/features/shared/widgets/layout/below_app_bar.dart';
 import 'package:e_commerce_app/features/client/presentation/screens/orders/orders.dart';
-import 'package:e_commerce_app/features/shared/widgets/layout/top_buttons.dart';
+import 'package:e_commerce_app/features/client/presentation/screens/auth/top_buttons.dart';
 import 'package:flutter/material.dart';
 
 class AccountScreen extends StatefulWidget {

@@ -1,4 +1,4 @@
-import 'package:e_commerce_app/features/client/presentation/screens/orders/address_screen.dart';
+import 'package:e_commerce_app/features/client/presentation/screens/product/address_screen.dart';
 import 'package:e_commerce_app/components/declarations.dart';
 import 'package:e_commerce_app/core/providers/user_provider.dart';
 import 'package:e_commerce_app/features/shared/widgets/layout/address_bar.dart';

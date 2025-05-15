@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/core/dependency_injection/service_locator.dart';
 import 'package:e_commerce_app/core/models/product.dart';
 import 'package:e_commerce_app/features/client/presentation/screens/product/product_details_screen.dart';
 import 'package:e_commerce_app/core/services/home_service.dart';
@@ -16,7 +17,7 @@ class DealOfDay extends StatefulWidget {
 
 class _DealOfDayState extends State<DealOfDay> {
   List<Product>? productList;
-  HomeService homeService = HomeService();
+  final homeService = getIt<HomeService>();
 
   @override
   void initState() {

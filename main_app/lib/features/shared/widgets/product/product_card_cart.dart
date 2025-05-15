@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/core/dependency_injection/service_locator.dart';
 import 'package:e_commerce_app/core/models/product.dart';
 import 'package:e_commerce_app/core/services/product_servic.dart';
 import 'package:e_commerce_app/core/providers/user_provider.dart';
@@ -14,7 +15,8 @@ class ProductCardCart extends StatefulWidget {
 }
 
 class _ProductCardCartState extends State<ProductCardCart> {
-  final ProductServices productServices = ProductServices();
+  // final ProductServices productServices = ProductServices();
+  final productServices = getIt<ProductServices>();
 
   void increaseQty(Product product) {
     productServices.addProductToCart(

@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/core/dependency_injection/service_locator.dart';
 import 'package:e_commerce_app/core/models/order.dart';
 import 'package:e_commerce_app/core/services/admin_service.dart';
 import 'package:e_commerce_app/components/declarations.dart';
@@ -19,7 +20,7 @@ class OrderDetailsScreen extends StatefulWidget {
 
 class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
   int currentState = 0;
-  AdminService adminService = AdminService();
+  final adminService = getIt<AdminService>();
 
   @override
   void initState() {

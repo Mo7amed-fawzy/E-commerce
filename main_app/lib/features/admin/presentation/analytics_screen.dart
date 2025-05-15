@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/core/dependency_injection/service_locator.dart';
 import 'package:e_commerce_app/core/models/sales.dart';
 import 'package:e_commerce_app/core/services/admin_service.dart';
 import 'package:e_commerce_app/features/admin/presentation/analytics_charts.dart';
@@ -12,7 +13,8 @@ class AnalyticsScreen extends StatefulWidget {
 }
 
 class _AnalyticsScreenState extends State<AnalyticsScreen> {
-  AdminService adminService = AdminService();
+  final adminService = getIt<AdminService>();
+
   List<Sales>? sales;
   double? totalSales;
   double? totalOrders;

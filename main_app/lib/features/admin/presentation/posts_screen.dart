@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/core/dependency_injection/service_locator.dart';
 import 'package:e_commerce_app/core/models/product.dart';
 import 'package:e_commerce_app/features/admin/presentation/add_products.dart';
 import 'package:e_commerce_app/core/services/admin_service.dart';
@@ -14,7 +15,8 @@ class PostsScreen extends StatefulWidget {
 }
 
 class _PostsScreenState extends State<PostsScreen> {
-  final AdminService adminService = AdminService();
+  final adminService = getIt<AdminService>();
+
   List<Product>? products;
 
   @override

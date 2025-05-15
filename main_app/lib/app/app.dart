@@ -1,5 +1,6 @@
 import 'package:e_commerce_app/core/databases/local/favorite_color.dart';
 import 'package:e_commerce_app/core/databases/local/theme_mode.dart';
+import 'package:e_commerce_app/core/dependency_injection/service_locator.dart';
 import 'package:e_commerce_app/core/theme/app_theme.dart';
 import 'package:e_commerce_app/features/client/presentation/screens/start/start_screen.dart';
 import 'package:e_commerce_app/core/services/auth_service.dart';
@@ -9,7 +10,6 @@ import 'package:e_commerce_app/features/client/presentation/screens/home/custom_
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_bloc/flutter_bloc.dart'; // مهم
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -24,7 +24,9 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final AuthService authService = AuthService();
+  // final AuthService authService = AuthService();
+  final authService = getIt<AuthService>();
+
   Locale? _locale;
 
   setLocale(Locale locale) {

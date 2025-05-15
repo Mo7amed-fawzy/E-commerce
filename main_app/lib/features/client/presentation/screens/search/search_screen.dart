@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/core/dependency_injection/service_locator.dart';
 import 'package:e_commerce_app/core/models/product.dart';
 import 'package:e_commerce_app/core/services/home_service.dart';
 import 'package:e_commerce_app/components/declarations.dart';
@@ -17,7 +18,8 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   List<Product>? productList;
-  HomeService homeService = HomeService();
+  // HomeService homeService = HomeService();
+  final homeService = getIt<HomeService>();
 
   @override
   void initState() {

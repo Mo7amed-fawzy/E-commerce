@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/core/dependency_injection/service_locator.dart';
 import 'package:e_commerce_app/core/models/product.dart';
 import 'package:e_commerce_app/core/services/home_service.dart';
 import 'package:e_commerce_app/components/declarations.dart';
@@ -16,7 +17,7 @@ class CategoryDealScreen extends StatefulWidget {
 
 class _CategoryDealScreenState extends State<CategoryDealScreen> {
   List<Product>? productList;
-  HomeService homeService = HomeService();
+  final homeService = getIt<HomeService>();
 
   @override
   void initState() {

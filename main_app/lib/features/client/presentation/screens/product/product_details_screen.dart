@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:e_commerce_app/core/dependency_injection/service_locator.dart';
 import 'package:e_commerce_app/core/models/product.dart';
 import 'package:e_commerce_app/core/services/product_servic.dart';
 import 'package:e_commerce_app/core/providers/user_provider.dart';
@@ -19,7 +20,8 @@ class ProductDetailScreen extends StatefulWidget {
 }
 
 class _ProductDetailScreenState extends State<ProductDetailScreen> {
-  final ProductServices productServices = ProductServices();
+  // final ProductServices productServices = ProductServices();
+  final productServices = getIt<ProductServices>();
   double avgRating = 0;
   double userRating = 0;
   int quantity = 1;

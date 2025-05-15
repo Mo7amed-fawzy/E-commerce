@@ -1,8 +1,8 @@
+import 'package:e_commerce_app/core/dependency_injection/service_locator.dart';
 import 'package:e_commerce_app/features/admin/presentation/admin_screen.dart';
 import 'package:e_commerce_app/core/services/auth_service.dart';
 import 'package:e_commerce_app/components/utils.dart';
 import 'package:e_commerce_app/core/providers/user_provider.dart';
-import 'package:e_commerce_app/features/shared/widgets/layout/account_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,7 +14,7 @@ class TopButtons extends StatefulWidget {
 }
 
 class _TopButtonsState extends State<TopButtons> {
-  final AuthService authService = AuthService();
+  final authService = getIt<AuthService>();
 
   @override
   Widget build(BuildContext context) {

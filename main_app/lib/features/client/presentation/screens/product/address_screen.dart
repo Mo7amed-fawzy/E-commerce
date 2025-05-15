@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/core/dependency_injection/service_locator.dart';
 import 'package:e_commerce_app/core/services/product_servic.dart';
 import 'package:e_commerce_app/components/declarations.dart';
 import 'package:e_commerce_app/components/utils.dart';
@@ -20,7 +21,8 @@ class AddressScreen extends StatefulWidget {
 }
 
 class _AddressScreenState extends State<AddressScreen> {
-  final ProductServices productServices = ProductServices();
+  // final ProductServices productServices = ProductServices();
+  final productServices = getIt<ProductServices>();
   final TextEditingController addressTxt = TextEditingController();
   final TextEditingController homeTxt = TextEditingController();
   final TextEditingController areaTxt = TextEditingController();

@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:e_commerce_app/core/dependency_injection/service_locator.dart';
 import 'package:e_commerce_app/core/services/admin_service.dart';
 import 'package:e_commerce_app/components/declarations.dart';
 import 'package:e_commerce_app/components/utils.dart';
@@ -23,7 +24,7 @@ class _AddProductState extends State<AddProduct> {
   TextEditingController priceController = TextEditingController();
   TextEditingController qtyController = TextEditingController();
 
-  final AdminService adminService = AdminService();
+  final adminService = getIt<AdminService>();
 
   String category = 'Mobiles';
   //make list to pick returned list => this list to TextEditingController

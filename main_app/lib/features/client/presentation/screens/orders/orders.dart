@@ -1,5 +1,6 @@
+import 'package:e_commerce_app/core/dependency_injection/service_locator.dart';
 import 'package:e_commerce_app/core/models/order.dart';
-import 'package:e_commerce_app/features/client/presentation/screens/orders/order_details_screen.dart';
+import 'package:e_commerce_app/features/admin/presentation/order_details_screen.dart';
 import 'package:e_commerce_app/core/services/home_service.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,7 @@ class Orders extends StatefulWidget {
 
 class _OrdersState extends State<Orders> {
   List<Order>? orders;
-  HomeService homeService = HomeService();
+  final homeService = getIt<HomeService>();
 
   @override
   void initState() {

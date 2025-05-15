@@ -1,8 +1,8 @@
+import 'package:e_commerce_app/core/dependency_injection/service_locator.dart';
 import 'package:e_commerce_app/core/models/order.dart';
-import 'package:e_commerce_app/features/client/presentation/screens/orders/order_details_screen.dart';
+import 'package:e_commerce_app/features/admin/presentation/order_details_screen.dart';
 import 'package:e_commerce_app/core/services/admin_service.dart';
 import 'package:e_commerce_app/core/func/get_status.dart';
-import 'package:e_commerce_app/components/utils.dart';
 import 'package:e_commerce_app/core/widgets/loader.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +15,7 @@ class AdminOrdersScreen extends StatefulWidget {
 
 class _AdminOrdersScreenState extends State<AdminOrdersScreen> {
   List<Order>? orders;
-  AdminService adminService = AdminService();
+  final adminService = getIt<AdminService>();
 
   @override
   void initState() {

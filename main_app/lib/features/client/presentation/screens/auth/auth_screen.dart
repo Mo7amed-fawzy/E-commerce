@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/core/dependency_injection/service_locator.dart';
 import 'package:e_commerce_app/core/services/auth_service.dart';
 import 'package:e_commerce_app/components/declarations.dart';
 import 'package:e_commerce_app/core/widgets/custom_button.dart';
@@ -19,7 +20,7 @@ class _AuthScreenState extends State<AuthScreen> {
   AuthEnum _auth = AuthEnum.signup;
   final _signUpKey = GlobalKey<FormState>();
   final _signInKey = GlobalKey<FormState>();
-  final AuthService authService = AuthService();
+  final authService = getIt<AuthService>();
 
   final TextEditingController _emailTxt = TextEditingController();
   final TextEditingController _passwordTxt = TextEditingController();
